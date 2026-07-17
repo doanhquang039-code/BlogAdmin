@@ -2,11 +2,12 @@
 function initSettingsPanel() {
     const settingsBtn = document.getElementById('settingsBtn');
     const settingsPanel = document.getElementById('settingsPanel');
+    const settingsOverlay = document.getElementById('settingsOverlay');
     const closeSettingsBtn = document.getElementById('closeSettings');
     const resetBtn = document.getElementById('resetSettings');
 
     // Check if elements exist
-    if (!settingsBtn || !settingsPanel) {
+    if (!settingsBtn || !settingsPanel || !settingsOverlay) {
         console.warn('Settings elements not found');
         return;
     }
@@ -20,13 +21,31 @@ function initSettingsPanel() {
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic = document.getElementById('bgMusic');
 
-    // Open/Close settings panel
+    // Open settings panel
     settingsBtn.addEventListener('click', () => {
         settingsPanel.classList.add('active');
+        settingsOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
     });
 
-    closeSettingsBtn.addEventListener('click', () => {
+    // Close settings panel function
+    function closeSettings() {
         settingsPanel.classList.remove('active');
+        settingsOverlay.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close button
+    closeSettingsBtn.addEventListener('click', closeSettings);
+
+    // Click overlay to close
+    settingsOverlay.addEventListener('click', closeSettings);
+
+    // ESC key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && settingsPanel.classList.contains('active')) {
+            closeSettings();
+        }
     });
 
     // Apply brightness, contrast, saturation
@@ -208,13 +227,6 @@ window.addEventListener('load', () => {
     if (musicToggle.checked) {
         bgMusic.play().catch(err => console.log('Autoplay blocked:', err));
     }
-    });
-
-    // Close settings when clicking outside
-    settingsPanel.addEventListener('click', (e) => {
-        if (e.target === settingsPanel) {
-            settingsPanel.classList.remove('active');
-        }
     });
 }
 
