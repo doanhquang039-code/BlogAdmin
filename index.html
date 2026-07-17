@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặng Quang Doanh - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- View Counter & Settings -->
+    <div class="top-controls">
+        <div class="view-counter">
+            <i class="fas fa-eye"></i>
+            <span id="viewCount">0</span>
+            <span class="view-label" data-i18n="views">Lượt xem</span>
+        </div>
+        
+        <button id="settingsBtn" class="settings-btn" title="Customize Theme">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel">
+        <div class="settings-header">
+            <h3>⚙️ Customize</h3>
+            <button id="closeSettings" class="close-settings">&times;</button>
+        </div>
+        
+        <div class="settings-content">
+            <!-- Brightness -->
+            <div class="setting-item">
+                <label for="brightness">Brightness</label>
+                <div class="slider-group">
+                    <i class="fas fa-sun"></i>
+                    <input type="range" id="brightness" min="50" max="150" value="100" class="slider">
+                    <span id="brightnessValue">100%</span>
+                </div>
+            </div>
+
+            <!-- Contrast -->
+            <div class="setting-item">
+                <label for="contrast">Contrast</label>
+                <div class="slider-group">
+                    <i class="fas fa-adjust"></i>
+                    <input type="range" id="contrast" min="80" max="150" value="100" class="slider">
+                    <span id="contrastValue">100%</span>
+                </div>
+            </div>
+
+            <!-- Saturation -->
+            <div class="setting-item">
+                <label for="saturation">Saturation</label>
+                <div class="slider-group">
+                    <i class="fas fa-palette"></i>
+                    <input type="range" id="saturation" min="0" max="150" value="100" class="slider">
+                    <span id="saturationValue">100%</span>
+                </div>
+            </div>
+
+            <!-- Theme Colors -->
+            <div class="setting-item">
+                <label>Theme Color</label>
+                <div class="color-options">
+                    <button class="color-btn" data-color="purple" title="Purple" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></button>
+                    <button class="color-btn" data-color="blue" title="Blue" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);"></button>
+                    <button class="color-btn" data-color="green" title="Green" style="background: linear-gradient(135deg, #10b981, #14b8a6);"></button>
+                    <button class="color-btn" data-color="pink" title="Pink" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"></button>
+                    <button class="color-btn" data-color="orange" title="Orange" style="background: linear-gradient(135deg, #f97316, #fb923c);"></button>
+                </div>
+            </div>
+
+            <!-- Background -->
+            <div class="setting-item">
+                <label>Background</label>
+                <div class="bg-options">
+                    <button class="bg-btn" data-bg="dark" title="Dark">🌙</button>
+                    <button class="bg-btn" data-bg="light" title="Light">☀️</button>
+                    <button class="bg-btn" data-bg="gradient" title="Gradient">🌌</button>
+                </div>
+            </div>
+
+            <!-- Music Toggle -->
+            <div class="setting-item">
+                <label for="musicToggle">Background Music</label>
+                <div class="music-toggle">
+                    <input type="checkbox" id="musicToggle" checked>
+                    <span>ON</span>
+                    <i class="fas fa-music"></i>
+                </div>
+            </div>
+
+            <!-- Reset -->
+            <button id="resetSettings" class="reset-btn">
+                <i class="fas fa-redo"></i> Reset All
+            </button>
+        </div>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="lang-btn" data-lang="vi" title="Tiếng Việt">
+            <span>VN</span>
+        </button>
+        <button class="lang-btn" data-lang="en" title="English">
+            <span>EN</span>
+        </button>
+        <button class="lang-btn" data-lang="zh" title="中文">
+            <span>中</span>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span data-i18n="devPortfolio">DevPortfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link" data-i18n="home">Home</a></li>
+                <li><a href="#tech" class="nav-link" data-i18n="techStack">Tech Stack</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="projects">Projects</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-particles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="greeting" data-i18n="hello">👋 Xin chào, tôi là</span>
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Đặng Quang Doanh</span>
+                    </h1>
+                    <h2 class="hero-subtitle" data-i18n="heroSubtitle">Sinh viên CNTT năm 2 | Full-Stack Developer</h2>
+                    <p class="hero-description" data-i18n="heroDescription">
+                        🚀 <span data-i18n="passionate">Passionate</span> <span data-i18n="about">about</span> <span data-i18n="buildingInnovative">building innovative solutions</span> | 
+                        💻 Spring Boot • Node.js • Flutter • Python AI
+                    </p>
+                    <div class="hero-info">
+                        <div class="info-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <div>
+                                <strong data-i18n="dateOfBirth">Ngày sinh:</strong>
+                                <span>29/12/2006</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong data-i18n="birthPlace">Nơi sinh:</strong>
+                                <span>Thái Bình, Việt Nam</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong data-i18n="university">Trường:</strong>
+                                <span data-i18n="computerScience">Sinh viên CNTT - Năm 2</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 30px;"></div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-code"></i> <span data-i18n="viewProjects">Xem dự án</span>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> <span data-i18n="contactMe">Liên hệ</span>
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/doanhquang039-code" target="_blank" class="social-icon" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/doanh-quang-0a4561407/" target="_blank" class="social-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:doanhquang039@gmail.com" class="social-icon" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://zalo.me/0373542892" target="_blank" class="social-icon" title="Zalo">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-card">
+                        <div class="profile-img-wrapper">
+                            <img src="Screenshot 2026-07-14 095627.png" alt="Đặng Quang Doanh" class="profile-img">
+                            <div class="profile-ring"></div>
+                        </div>
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span data-i18n="availableForWork">Sẵn sàng làm việc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech" class="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="techStackTag">🛠️ Công nghệ</span>
+                <h2 class="section-title" data-i18n="techStackTitle">Tech Stack</h2>
+                <p class="section-description" data-i18n="techStackDesc">Các công nghệ và công cụ mà tôi thành thạo và sử dụng hàng ngày</p>
+            </div>
+            
+            <div class="tech-category">
+                <h3 class="category-title">Backend</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-java"></i><span>Java</span></div>
+                    <div class="tech-card"><i class="fas fa-leaf"></i><span>Spring Boot</span></div>
+                    <div class="tech-card"><i class="fab fa-node"></i><span>Node.js</span></div>
+                    <div class="tech-card"><i class="fas fa-server"></i><span>Express.js</span></div>
+                    <div class="tech-card"><i class="fab fa-golang"></i><span>Go</span></div>
+                    <div class="tech-card"><i class="fas fa-hashtag"></i><span>C#</span></div>
+                    <div class="tech-card"><i class="fas fa-code"></i><span>.NET</span></div>
+                    <div class="tech-card"><i class="fab fa-android"></i><span>Android</span></div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="tech-card"><i class="fab fa-java"></i><span>Java</span></div>
+                    <div class="tech-card"><i class="fas fa-leaf"></i><span>Spring Boot</span></div>
+                    <div class="tech-card"><i class="fab fa-node"></i><span>Node.js</span></div>
+                    <div class="tech-card"><i class="fas fa-server"></i><span>Express.js</span></div>
+                    <div class="tech-card"><i class="fab fa-golang"></i><span>Go</span></div>
+                    <div class="tech-card"><i class="fas fa-hashtag"></i><span>C#</span></div>
+                    <div class="tech-card"><i class="fas fa-code"></i><span>.NET</span></div>
+                    <div class="tech-card"><i class="fab fa-android"></i><span>Android</span></div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="category-title">AI & Python</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="tech-card"><i class="fas fa-robot"></i><span>OpenAI API</span></div>
+                    <div class="tech-card"><i class="fas fa-brain"></i><span>Gemini API</span></div>
+                    <div class="tech-card"><i class="fas fa-link"></i><span>LangChain</span></div>
+                    <div class="tech-card"><i class="fas fa-bolt"></i><span>FastAPI</span></div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="tech-card"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="tech-card"><i class="fas fa-robot"></i><span>OpenAI API</span></div>
+                    <div class="tech-card"><i class="fas fa-brain"></i><span>Gemini API</span></div>
+                    <div class="tech-card"><i class="fas fa-link"></i><span>LangChain</span></div>
+                    <div class="tech-card"><i class="fas fa-bolt"></i><span>FastAPI</span></div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="category-title">Frontend & Mobile</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                    <div class="tech-card"><i class="fab fa-react"></i><span>TypeScript</span></div>
+                    <div class="tech-card"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                    <div class="tech-card"><i class="fab fa-css3"></i><span>CSS3</span></div>
+                    <div class="tech-card"><i class="fas fa-mobile-alt"></i><span>Flutter</span></div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="tech-card"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                    <div class="tech-card"><i class="fab fa-react"></i><span>TypeScript</span></div>
+                    <div class="tech-card"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                    <div class="tech-card"><i class="fab fa-css3"></i><span>CSS3</span></div>
+                    <div class="tech-card"><i class="fas fa-mobile-alt"></i><span>Flutter</span></div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="category-title">Database</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fas fa-database"></i><span>MySQL</span></div>
+                    <div class="tech-card"><i class="fas fa-leaf"></i><span>MongoDB</span></div>
+                    <div class="tech-card"><i class="fas fa-server"></i><span>SQL Server</span></div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="tech-card"><i class="fas fa-database"></i><span>MySQL</span></div>
+                    <div class="tech-card"><i class="fas fa-leaf"></i><span>MongoDB</span></div>
+                    <div class="tech-card"><i class="fas fa-server"></i><span>SQL Server</span></div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="category-title">Tools & DevOps</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
+                    <div class="tech-card"><i class="fab fa-github"></i><span>GitHub</span></div>
+                    <div class="tech-card"><i class="fas fa-code"></i><span>VS Code</span></div>
+                    <div class="tech-card"><i class="fab fa-docker"></i><span>Docker</span></div>
+                    <div class="tech-card"><i class="fab fa-linux"></i><span>Linux</span></div>
+                    <div class="tech-card"><i class="fas fa-vial"></i><span>Postman</span></div>
+                    <div class="tech-card"><i class="fas fa-cloud"></i><span>Cloudinary</span></div>
+                    <div class="tech-card"><i class="fas fa-brain"></i><span>IntelliJ</span></div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="tech-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
+                    <div class="tech-card"><i class="fab fa-github"></i><span>GitHub</span></div>
+                    <div class="tech-card"><i class="fas fa-code"></i><span>VS Code</span></div>
+                    <div class="tech-card"><i class="fab fa-docker"></i><span>Docker</span></div>
+                    <div class="tech-card"><i class="fab fa-linux"></i><span>Linux</span></div>
+                    <div class="tech-card"><i class="fas fa-vial"></i><span>Postman</span></div>
+                    <div class="tech-card"><i class="fas fa-cloud"></i><span>Cloudinary</span></div>
+                    <div class="tech-card"><i class="fas fa-brain"></i><span>IntelliJ</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="projectsTag">🚀 Dự án</span>
+                <h2 class="section-title" data-i18n="myProjects">My Projects</h2>
+                <p class="section-description" data-i18n="projectsDesc">Các dự án và công việc mà tôi đã thực hiện</p>
+                <div style="height: 2rem;"></div>
+            </div>
+            
+            <div class="projects-table-wrapper">
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="projectName">Project</th>
+                            <th data-i18n="techStackCol">Tech Stack</th>
+                            <th data-i18n="description">Description</th>
+                            <th data-i18n="link">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>App Flutter</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-typescript">TypeScript</span>
+                                    <span class="badge badge-flutter">Flutter</span>
+                                    <span class="badge badge-sqlserver">SQL Server</span>
+                                </div>
+                            </td>
+                            <td>Expense tracker app with NestJS backend & Flutter mobile</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-brain"></i>
+                                    <span>Learn AI</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-python">Python</span>
+                                    <span class="badge badge-openai">OpenAI</span>
+                                    <span class="badge badge-gemini">Gemini</span>
+                                    <span class="badge badge-fastapi">FastAPI</span>
+                                </div>
+                            </td>
+                            <td>AI learning project using Python with OpenAI & Gemini APIs, LangChain integration</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-users"></i>
+                                    <span>HR Management System</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-spring">Spring Boot</span>
+                                    <span class="badge badge-mysql">MySQL</span>
+                                    <span class="badge badge-docker">Docker</span>
+                                    <span class="badge badge-cloudinary">Cloudinary</span>
+                                </div>
+                            </td>
+                            <td>Human resource management system with Spring Security & Spring Cloud</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-book"></i>
+                                    <span>Library System</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-java">Java</span>
+                                    <span class="badge badge-sqlserver">SQL Server</span>
+                                </div>
+                            </td>
+                            <td>Desktop app for book borrowing & management</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-box"></i>
+                                    <span>Linkky</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-python">Python</span>
+                                    <span class="badge badge-docker">Docker</span>
+                                    <span class="badge badge-postgres">PostgreSQL</span>
+                                </div>
+                            </td>
+                            <td>Containerized desktop app for book management</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-blog"></i>
+                                    <span>NodeJS Blog</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-nodejs">Node.js</span>
+                                    <span class="badge badge-ejs">EJS</span>
+                                    <span class="badge badge-mysql">MySQL</span>
+                                </div>
+                            </td>
+                            <td>Personal blog platform built with NodeJS & Cloudinary</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-hotel"></i>
+                                    <span>Tour Hotel</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-java">Java</span>
+                                    <span class="badge badge-jsp">JSP</span>
+                                    <span class="badge badge-mysql">MySQL</span>
+                                </div>
+                            </td>
+                            <td>Hotel & tour booking website using Java Servlet JSP</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-desktop"></i>
+                                    <span>ADC Software</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-csharp">C#</span>
+                                    <span class="badge badge-dotnet">.NET</span>
+                                </div>
+                            </td>
+                            <td>Desktop software built with C# .NET</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="project-name">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>GoLang Cloud & DevOps</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tech-badges">
+                                    <span class="badge badge-go">Go</span>
+                                    <span class="badge badge-docker">Docker</span>
+                                    <span class="badge badge-kubernetes">Kubernetes</span>
+                                </div>
+                            </td>
+                            <td>Cloud & DevOps project built with GoLang (microservices, Docker, CI/CD)</td>
+                            <td>
+                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
+                                    <i class="fas fa-star"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="achievementTag">🏆 Thành tựu</span>
+                <h2 class="section-title" data-i18n="myAchievements">My Achievements</h2>
+                <p class="section-description" data-i18n="achievementsDesc">Chứng chỉ và những thành tựu cho thấy quá trình học tập và phát triển của tôi</p>
+                <div style="height: 2rem;"></div>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="1782056644240_423698007583510178_5649508933815108388_60ac2f5b167dda1b207c092ccfcc587d.jpg" alt="Google Cloud Certification">
+                        <div class="achievement-overlay">
+                            <a href="1782056644240_423698007583510178_5649508933815108388_60ac2f5b167dda1b207c092ccfcc587d.jpg" target="_blank" class="achievement-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Google Cloud Certified</h3>
+                        <p>Google Cloud Certified Cloud Digital Leader - Chứng nhận kiến thức về nền tảng Google Cloud</p>
+                        <div class="achievement-tags">
+                            <span class="tag">Google Cloud</span>
+                            <span class="tag">Cloud Computing</span>
+                            <span class="tag">2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="image.png" alt="Achievement 2">
+                        <div class="achievement-overlay">
+                            <a href="image.png" target="_blank" class="achievement-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Professional Achievement</h3>
+                        <p>Công nhân cho hiệu suất xuất sắc trong phát triển phần mềm và giải quyết vấn đề</p>
+                        <div class="achievement-tags">
+                            <span class="tag">Development</span>
+                            <span class="tag">Excellence</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="1784278246064_423698007583510178_5649508933815108388_a8ccce0e93155531df25394b5c2c6e00.jpg" alt="Hoc Bong Toan Phan">
+                        <div class="achievement-overlay">
+                            <a href="1784278246064_423698007583510178_5649508933815108388_a8ccce0e93155531df25394b5c2c6e00.jpg" target="_blank" class="achievement-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Học Bổng Toàn Phần</h3>
+                        <p>Đạt học bổng toàn phần từ trường đại học - Công nhân thành tích học tập xuất sắc</p>
+                        <div class="achievement-tags">
+                            <span class="tag">Scholarship</span>
+                            <span class="tag">Academic</span>
+                            <span class="tag">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="1784278246614_423698007583510178_5649508933815108388_9394e4814305bc72a8b7912860e1f671.jpg" alt="GameKren Award">
+                        <div class="achievement-overlay">
+                            <a href="1784278246614_423698007583510178_5649508933815108388_9394e4814305bc72a8b7912860e1f671.jpg" target="_blank" class="achievement-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>GameKren Prize - 16M VND</h3>
+                        <p>Giải thưởng , kết quả thi TN 2024</p>
+                        <div class="achievement-tags">
+                            <span class="tag">Game Dev</span>
+                            <span class="tag">Award</span>
+                            <span class="tag">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="1image.png" alt="Achievement 3">
+                        <div class="achievement-overlay">
+                            <a href="1image.png" target="_blank" class="achievement-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Personal Milestone</h3>
+                        <p>Thành tựu đáng nhớ trong hành trình phát triển cá nhân và chuyên môn</p>
+                        <div class="achievement-tags">
+                            <span class="tag">Achievement</span>
+                            <span class="tag">Growth</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="experienceTag">💼 Kinh Nghiệm</span>
+                <h2 class="section-title" data-i18n="myExperience">My Experience</h2>
+                <p class="section-description" data-i18n="experienceDesc">Quá trình làm việc và phát triển kỹ năng chuyên môn</p>
+                <div style="height: 1.5rem;"></div>
+            </div>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-title">💻 Web App Development</h3>
+                            <span class="experience-period">Ongoing</span>
+                        </div>
+                        <div class="company-badge">
+                            <i class="fas fa-code"></i>
+                            <span>Full-Stack Development</span>
+                        </div>
+                        <p class="experience-description">
+                            Phát triển các ứng dụng web hoàn chỉnh sử dụng Spring Boot, Node.js, React và Flutter. Thiết kế và xây dựng các hệ thống backend có khả năng mở rộng cao với API RESTful và frontend responsive.
+                        </p>
+                        <div class="experience-tech">
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Flutter</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-title">🤖 AI Agent Research</h3>
+                            <span class="experience-period">Ongoing</span>
+                        </div>
+                        <div class="company-badge">
+                            <i class="fas fa-robot"></i>
+                            <span>AI / Machine Learning</span>
+                        </div>
+                        <p class="experience-description">
+                            Nghiên cứu và phát triển các AI Agent thông minh sử dụng Python, LLM APIs (OpenAI, Gemini), LangChain, và các công nghệ AI hiện đại. Xây dựng các ứng dụng AI tích hợp để tự động hóa tác vụ phức tạp.
+                        </p>
+                        <div class="experience-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">OpenAI API</span>
+                            <span class="tech-badge">Gemini API</span>
+                            <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-title">☁️ Google Cloud Infrastructure</h3>
+                            <span class="experience-period">Ongoing</span>
+                        </div>
+                        <div class="company-badge">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud & DevOps</span>
+                        </div>
+                        <p class="experience-description">
+                            Thiết kế và quản lý hạ tầng trên Google Cloud Platform (GCP). Triển khai ứng dụng sử dụng Cloud Run, Compute Engine, App Engine. Cấu hình CI/CD pipelines, monitoring, và tối ưu hóa chi phí cloud.
+                        </p>
+                        <div class="experience-tech">
+                            <span class="tech-badge">Google Cloud</span>
+                            <span class="tech-badge">Cloud Run</span>
+                            <span class="tech-badge">Compute Engine</span>
+                            <span class="tech-badge">CI/CD</span>
+                            <span class="tech-badge">Docker</span>
+                            <span class="tech-badge">Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests" class="interests">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="interestsTag">🎮 Sở Thích</span>
+                <h2 class="section-title" data-i18n="myInterests">My Interests</h2>
+                <p class="section-description" data-i18n="interestsDesc">Những điều tôi yêu thích ngoài lập trình</p>
+                <div style="height: 1.5rem;"></div>
+            </div>
+            
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="interest-title">🎮 Gaming</h3>
+                    <div class="interest-items">
+                        <span class="interest-item">
+                            <i class="fas fa-trophy"></i>
+                            Liên Quân Mobile
+                        </span>
+                        <span class="interest-item">
+                            <i class="fas fa-cube"></i>
+                            Roblox
+                        </span>
+                    </div>
+                    <p class="interest-description">
+                        Thích chơi các trò chơi chiến thuật và sáng tạo. Liên Quân giúp phát triển tư duy chiến lược, còn Roblox cho phép sáng tạo và khám phá thế giới ảo.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="interest-title">📚 Reading</h3>
+                    <div class="interest-items">
+                        <span class="interest-item">
+                            <i class="fas fa-brain"></i>
+                            Công nghệ & Khoa học
+                        </span>
+                        <span class="interest-item">
+                            <i class="fas fa-lightbulb"></i>
+                            Tự phát triển
+                        </span>
+                    </div>
+                    <p class="interest-description">
+                        Đọc sách về công nghệ, AI, khoa học dữ liệu và phát triển cá nhân. Yêu thích khám phá những kiến thức mới và áp dụng vào thực tiễn.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="interest-title">🎵 Music</h3>
+                    <div class="interest-items">
+                        <span class="interest-item">
+                            <i class="fas fa-headphones"></i>
+                            Indie & EDM
+                        </span>
+                        <span class="interest-item">
+                            <i class="fas fa-heart"></i>
+                            Spotify Lover
+                        </span>
+                    </div>
+                    <p class="interest-description">
+                        Nghe nhạc là một phần quan trọng của cuộc sống tôi. Thích các bài nhạc Indie, EDM và những ca khúc có ý nghĩa. Nhạc giúp tôi thư giãn và tăng năng suất khi làm việc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="getInTouch">📬 Liên hệ</span>
+                <h2 class="section-title" data-i18n="contactTitle">Get In Touch</h2>
+                <p class="section-description" data-i18n="contactDesc">Hãy liên hệ với tôi cho những cơ hội hợp tác hoặc chỉ một cuộc trò chuyện thân thiện!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-methods">
+                    <a href="mailto:doanhquang039@gmail.com" class="contact-card" target="_blank">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p class="contact-value">doanhquang039@gmail.com</p>
+                    </a>
+                    <a href="https://github.com/doanhquang039-code" class="contact-card" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <h3>GitHub</h3>
+                        <p class="contact-value">@doanhquang039-code</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/doanh-quang-0a4561407/" class="contact-card" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <p class="contact-value">Đặng Quang Doanh</p>
+                    </a>
+                    <a href="https://zalo.me/0373542892" class="contact-card" target="_blank">
+                        <i class="fas fa-phone"></i>
+                        <h3>Zalo</h3>
+                        <p class="contact-value">037 354 2892</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 <span data-i18n="devPortfolioFooter">DevPortfolio</span>. <span data-i18n="madeWith">Made with</span> <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+            <div class="footer-links">
+                <a href="#home" data-i18n="home">Home</a>
+                <a href="#about" data-i18n="about">About</a>
+                <a href="#tech" data-i18n="techStack">Tech</a>
+                <a href="#projects" data-i18n="achievements">Achievements</a>
+                <a href="#contact" data-i18n="contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>
