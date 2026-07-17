@@ -237,12 +237,69 @@ if (document.readyState === 'loading') {
     initSettingsPanel();
 }
 
-// ===== View Counter =====
-function initViewCounter() {
+// ===== View Counter with API =====
+// Using a free counter API to track views across all devices
+const COUNTER_API_NAMESPACE = 'doanhquang-portfolio';
+const COUNTER_API_KEY = 'portfolio-views';
+
+async function initViewCounter() {
     const viewCountElement = document.getElementById('viewCount');
     if (!viewCountElement) return;
     
-    // Get current view count from localStorage
+    try {
+        // Check if user already visited (using sessionStorage for current session)
+        const hasVisitedThisSession = sessionStorage.getItem('hasVisited');
+        
+        if (!hasVisitedThisSession) {
+            // First visit in this session - increment counter
+            await incrementViewCount(viewCountElement);
+            sessionStorage.setItem('hasVisited', 'true');
+        } else {
+            // Already visited in this session - just fetch current count
+            await fetchViewCount(viewCountElement);
+        }
+    } catch (error) {
+        console.error('View counter error:', error);
+        // Fallback to localStorage if API fails
+        useFallbackCounter(viewCountElement);
+    }
+}
+
+async function incrementViewCount(element) {
+    try {
+        // Using CountAPI.xyz - Free hit counter service
+        const response = await fetch(`https://api.countapi.xyz/hit/${COUNTER_API_NAMESPACE}/${COUNTER_API_KEY}`);
+        const data = await response.json();
+        
+        if (data.value) {
+            animateViewCount(element, data.value);
+        } else {
+            throw new Error('Invalid API response');
+        }
+    } catch (error) {
+        console.error('Failed to increment view count:', error);
+        useFallbackCounter(element);
+    }
+}
+
+async function fetchViewCount(element) {
+    try {
+        const response = await fetch(`https://api.countapi.xyz/get/${COUNTER_API_NAMESPACE}/${COUNTER_API_KEY}`);
+        const data = await response.json();
+        
+        if (data.value) {
+            animateViewCount(element, data.value);
+        } else {
+            throw new Error('Invalid API response');
+        }
+    } catch (error) {
+        console.error('Failed to fetch view count:', error);
+        useFallbackCounter(element);
+    }
+}
+
+function useFallbackCounter(element) {
+    // Fallback to localStorage if API is unavailable
     let viewCount = localStorage.getItem('portfolioViewCount');
     
     if (!viewCount) {
@@ -251,26 +308,23 @@ function initViewCounter() {
         viewCount = parseInt(viewCount) + 1;
     }
     
-    // Save updated view count
     localStorage.setItem('portfolioViewCount', viewCount);
-    
-    // Update the display with animation
-    animateViewCount(viewCountElement, viewCount);
+    animateViewCount(element, viewCount);
 }
 
 function animateViewCount(element, targetCount) {
     let currentCount = parseInt(element.textContent) || 0;
-    const increment = Math.ceil(targetCount / 20);
+    const increment = Math.ceil(targetCount / 30);
     
     const timer = setInterval(() => {
         currentCount += increment;
         if (currentCount >= targetCount) {
-            element.textContent = targetCount;
+            element.textContent = targetCount.toLocaleString(); // Format with commas
             clearInterval(timer);
         } else {
-            element.textContent = currentCount;
+            element.textContent = currentCount.toLocaleString();
         }
-    }, 50);
+    }, 30);
 }
 
 // Initialize view counter on page load
