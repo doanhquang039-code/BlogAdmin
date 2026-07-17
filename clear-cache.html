@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Clear Cache & Test Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+        .box {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #6366f1;
+        }
+        h1 {
+            color: #6366f1;
+        }
+        button {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .success {
+            color: #10b981;
+        }
+        .error {
+            color: #ef4444;
+        }
+        .code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧹 Clear Cache & Test</h1>
+    
+    <div class="box">
+        <h2>Step 1: Clear All Storage</h2>
+        <button onclick="clearAll()">🗑️ Clear Everything</button>
+        <p id="clearResult"></p>
+    </div>
+
+    <div class="box">
+        <h2>Step 2: Test API Connection</h2>
+        <button onclick="testAPI()">🔌 Test API</button>
+        <p id="apiResult"></p>
+    </div>
+
+    <div class="box">
+        <h2>Step 3: Go to Portfolio</h2>
+        <button onclick="goToPortfolio()">🚀 Open Portfolio</button>
+    </div>
+
+    <div class="box">
+        <h2>Instructions:</h2>
+        <ol style="text-align: left;">
+            <li>Click "Clear Everything" button</li>
+            <li>Click "Test API" to verify connection</li>
+            <li>Click "Open Portfolio" or press <strong>Ctrl+Shift+R</strong> on main page</li>
+            <li>Check if counter updates!</li>
+        </ol>
+    </div>
+
+    <script>
+        function clearAll() {
+            const result = document.getElementById('clearResult');
+            
+            try {
+                // Clear all storage
+                localStorage.clear();
+                sessionStorage.clear();
+                
+                // Clear cookies
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                
+                result.innerHTML = '<span class="success">✅ Cleared:<br>- LocalStorage<br>- SessionStorage<br>- Cookies</span>';
+            } catch (error) {
+                result.innerHTML = '<span class="error">❌ Error: ' + error.message + '</span>';
+            }
+        }
+
+        async function testAPI() {
+            const result = document.getElementById('apiResult');
+            result.innerHTML = '⏳ Testing API...';
+            
+            try {
+                const response = await fetch('https://api.countapi.xyz/get/doanhquang-portfolio/portfolio-views');
+                
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+                
+                const data = await response.json();
+                
+                result.innerHTML = `
+                    <span class="success">✅ API Connected!</span><br>
+                    <div class="code">
+                        Current Count: <strong>${data.value || 0}</strong><br>
+                        Namespace: doanhquang-portfolio<br>
+                        Key: portfolio-views
+                    </div>
+                    <p>Counter is working! 🎉</p>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <span class="error">❌ API Connection Failed</span><br>
+                    <div class="code">${error.message}</div>
+                    <p>Possible issues:<br>
+                    - No internet connection<br>
+                    - API is blocked<br>
+                    - Firewall/Antivirus blocking
+                    </p>
+                `;
+            }
+        }
+
+        function goToPortfolio() {
+            window.location.href = 'index.html?v=' + Date.now();
+        }
+
+        // Auto-clear on load
+        window.addEventListener('load', () => {
+            document.body.innerHTML = document.body.innerHTML + 
+                '<div class="box"><p>💡 <strong>Pro Tip:</strong> After clicking buttons, go to main page and press <code>Ctrl + Shift + R</code> to hard refresh!</p></div>';
+        });
+    </script>
+</body>
+</html>

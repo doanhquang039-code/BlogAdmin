@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Counter API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0f172a;
+            color: white;
+        }
+        .test-box {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #6366f1;
+        }
+        h1 {
+            color: #6366f1;
+        }
+        button {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+        }
+        .result {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+        }
+        .success {
+            color: #10b981;
+        }
+        .error {
+            color: #ef4444;
+        }
+        .count {
+            font-size: 48px;
+            font-weight: bold;
+            color: #6366f1;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test View Counter API</h1>
+    
+    <div class="test-box">
+        <h2>Current Count:</h2>
+        <div class="count" id="currentCount">Loading...</div>
+        <button onclick="getCurrentCount()">🔄 Refresh Count</button>
+    </div>
+
+    <div class="test-box">
+        <h2>Test Actions:</h2>
+        <button onclick="incrementCount()">➕ Increment +1</button>
+        <button onclick="resetCount()">🔄 Reset to 0</button>
+        <button onclick="setCount()">✏️ Set to Custom Number</button>
+        <button onclick="getInfo()">ℹ️ Get API Info</button>
+    </div>
+
+    <div class="test-box">
+        <h2>Test Results:</h2>
+        <div class="result" id="result">Click a button to test...</div>
+    </div>
+
+    <div class="test-box">
+        <h2>Instructions:</h2>
+        <ul>
+            <li>✅ <strong>Refresh Count</strong> - Get current view count</li>
+            <li>✅ <strong>Increment</strong> - Add 1 to counter (test increment)</li>
+            <li>✅ <strong>Reset</strong> - Set counter back to 0</li>
+            <li>✅ <strong>Set Custom</strong> - Set to any number you want</li>
+            <li>✅ <strong>Get Info</strong> - View API details</li>
+        </ul>
+        <p><strong>Note:</strong> All changes are LIVE and affect the real counter!</p>
+    </div>
+
+    <script>
+        const NAMESPACE = 'doanhquang-portfolio';
+        const KEY = 'portfolio-views';
+        const resultDiv = document.getElementById('result');
+        const countDiv = document.getElementById('currentCount');
+
+        async function getCurrentCount() {
+            try {
+                resultDiv.innerHTML = '⏳ Fetching count...';
+                const response = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`);
+                const data = await response.json();
+                
+                countDiv.textContent = data.value || 0;
+                resultDiv.innerHTML = `<span class="success">✅ Success!</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        async function incrementCount() {
+            try {
+                resultDiv.innerHTML = '⏳ Incrementing...';
+                const response = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`);
+                const data = await response.json();
+                
+                countDiv.textContent = data.value || 0;
+                resultDiv.innerHTML = `<span class="success">✅ Incremented!</span><br>New count: <strong>${data.value}</strong><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        async function resetCount() {
+            if (!confirm('Reset counter to 0?')) return;
+            
+            try {
+                resultDiv.innerHTML = '⏳ Resetting...';
+                const response = await fetch(`https://api.countapi.xyz/set/${NAMESPACE}/${KEY}?value=0`);
+                const data = await response.json();
+                
+                countDiv.textContent = 0;
+                resultDiv.innerHTML = `<span class="success">✅ Reset to 0!</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        async function setCount() {
+            const value = prompt('Enter new count value:');
+            if (!value) return;
+            
+            try {
+                resultDiv.innerHTML = '⏳ Setting...';
+                const response = await fetch(`https://api.countapi.xyz/set/${NAMESPACE}/${KEY}?value=${value}`);
+                const data = await response.json();
+                
+                countDiv.textContent = value;
+                resultDiv.innerHTML = `<span class="success">✅ Set to ${value}!</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        async function getInfo() {
+            try {
+                resultDiv.innerHTML = '⏳ Getting info...';
+                const response = await fetch(`https://api.countapi.xyz/info/${NAMESPACE}/${KEY}`);
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `<span class="success">✅ API Info:</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        // Auto-load count on page load
+        window.addEventListener('load', getCurrentCount);
+    </script>
+</body>
+</html>
