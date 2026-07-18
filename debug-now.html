@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Settings Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #0f172a;
+            color: white;
+        }
+        .test-section {
+            background: #1e293b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+        .settings-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+        }
+        #output {
+            background: #000;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Debug Settings Panel</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Simple Button Click</h2>
+        <button id="testBtn1">Click Me (Test)</button>
+        <p id="result1">Chưa click</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Settings Icon Button</h2>
+        <button id="settingsBtn" class="settings-btn">⚙️</button>
+        <p id="result2">Chưa click settings</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Check Elements</h2>
+        <button onclick="checkElements()">Check Elements</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Load Main Portfolio</h2>
+        <button onclick="openMainPortfolio()">Open index.html</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message, type = 'success') {
+            const timestamp = new Date().toLocaleTimeString();
+            const line = `[${timestamp}] ${message}\n`;
+            const span = document.createElement('span');
+            span.className = type;
+            span.textContent = line;
+            output.appendChild(span);
+            console.log(message);
+        }
+
+        // Test 1: Simple button
+        document.getElementById('testBtn1').addEventListener('click', function() {
+            document.getElementById('result1').textContent = '✅ Button hoạt động!';
+            log('✅ Test 1 PASSED: Simple button click works', 'success');
+        });
+
+        // Test 2: Settings button
+        document.getElementById('settingsBtn').addEventListener('click', function() {
+            document.getElementById('result2').textContent = '✅ Settings button clicked!';
+            log('✅ Test 2 PASSED: Settings button click works', 'success');
+            alert('Settings button hoạt động! Vấn đề có thể là:\n1. Cache browser\n2. File script.js không load\n3. Event listener không attach');
+        });
+
+        // Test 3: Check elements
+        function checkElements() {
+            log('🔍 Checking elements...', 'warning');
+            
+            // Check if running from file or server
+            log(`Current URL: ${window.location.href}`, 'warning');
+            
+            // Check test button
+            const testBtn = document.getElementById('testBtn1');
+            log(testBtn ? '✅ Test button found' : '❌ Test button NOT found', testBtn ? 'success' : 'error');
+            
+            // Check settings button
+            const settingsBtn = document.getElementById('settingsBtn');
+            log(settingsBtn ? '✅ Settings button found' : '❌ Settings button NOT found', settingsBtn ? 'success' : 'error');
+            
+            // Check if jQuery loaded (not needed but check anyway)
+            log(typeof $ !== 'undefined' ? '⚠️ jQuery loaded (not needed)' : '✅ No jQuery', 'warning');
+            
+            // Check browser
+            log(`Browser: ${navigator.userAgent}`, 'warning');
+        }
+
+        function openMainPortfolio() {
+            log('🚀 Opening main portfolio...', 'warning');
+            window.location.href = 'index.html';
+        }
+
+        // Run checks on load
+        window.addEventListener('load', function() {
+            log('🚀 Page loaded', 'success');
+            checkElements();
+        });
+
+        // Log all clicks
+        document.addEventListener('click', function(e) {
+            log(`👆 Clicked: ${e.target.tagName} ${e.target.id || e.target.className}`, 'warning');
+        });
+    </script>
+</body>
+</html>

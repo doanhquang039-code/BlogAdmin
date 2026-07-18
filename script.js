@@ -720,3 +720,294 @@ window.addEventListener('load', () => {
 
 console.log('🚀 Portfolio loaded successfully!');
 console.log('💡 Tip: Try the Konami code for a surprise!');
+
+
+// ===== Enhanced Animations =====
+
+// Counter Animation for Stats
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-count'));
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    let current = 0;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current);
+        }
+    }, 16);
+}
+
+// Observe stats cards and animate when visible
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.stat-number');
+            counters.forEach(counter => animateCounter(counter));
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+// Observe stats cards
+const statsCards = document.querySelector('.stats-cards');
+if (statsCards) {
+    statsObserver.observe(statsCards);
+}
+
+// Role Text Animator
+function initRoleAnimator() {
+    const roles = [
+        'Sinh viên CNTT năm 2',
+        'Full-Stack Developer',
+        'AI Enthusiast',
+        'Cloud Developer'
+    ];
+    
+    let currentIndex = 0;
+    const roleElement = document.querySelector('.role-animator');
+    
+    if (!roleElement) return;
+    
+    function typeText(text, callback) {
+        let index = 0;
+        roleElement.textContent = '';
+        
+        const typingInterval = setInterval(() => {
+            if (index < text.length) {
+                roleElement.textContent += text[index];
+                index++;
+            } else {
+                clearInterval(typingInterval);
+                setTimeout(callback, 2000); // Wait 2s before next
+            }
+        }, 100);
+    }
+    
+    function eraseText(callback) {
+        let text = roleElement.textContent;
+        
+        const erasingInterval = setInterval(() => {
+            if (text.length > 0) {
+                text = text.slice(0, -1);
+                roleElement.textContent = text;
+            } else {
+                clearInterval(erasingInterval);
+                callback();
+            }
+        }, 50);
+    }
+    
+    function nextRole() {
+        eraseText(() => {
+            currentIndex = (currentIndex + 1) % roles.length;
+            typeText(roles[currentIndex], nextRole);
+        });
+    }
+    
+    // Start animation
+    typeText(roles[0], nextRole);
+}
+
+// Initialize on load
+window.addEventListener('load', () => {
+    initRoleAnimator();
+    
+    // Animate focus progress bars
+    const focusItems = document.querySelectorAll('.focus-progress');
+    const focusObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.width = entry.target.style.width;
+                focusObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    focusItems.forEach(item => focusObserver.observe(item));
+});
+
+// Smooth scroll with offset for fixed header
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const offset = 80; // Height of fixed navbar
+            const targetPosition = target.offsetTop - offset;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Active nav link on scroll
+function updateActiveNav() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+
+// Particle animation in hero
+function createParticles() {
+    const particlesContainer = document.querySelector('.hero-particles');
+    if (!particlesContainer) return;
+    
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 3 + 1}px;
+            height: ${Math.random() * 3 + 1}px;
+            background: rgba(99, 102, 241, ${Math.random() * 0.5 + 0.2});
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: float ${Math.random() * 10 + 5}s infinite ease-in-out;
+        `;
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Add float animation
+const floatStyle = document.createElement('style');
+floatStyle.textContent += `
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) translateX(0);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(floatStyle);
+
+createParticles();
+
+// Print Portfolio as PDF
+function printPortfolio() {
+    window.print();
+}
+
+// Add keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    // Ctrl + P = Print
+    if (e.ctrlKey && e.key === 'p') {
+        e.preventDefault();
+        printPortfolio();
+    }
+    
+    // Ctrl + K = Open settings
+    if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('settingsBtn').click();
+    }
+});
+
+// Scroll to top button
+const scrollToTopBtn = document.createElement('button');
+scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+scrollToTopBtn.className = 'scroll-to-top';
+scrollToTopBtn.style.cssText = `
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 998;
+    box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+`;
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.body.appendChild(scrollToTopBtn);
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.style.opacity = '1';
+        scrollToTopBtn.style.visibility = 'visible';
+    } else {
+        scrollToTopBtn.style.opacity = '0';
+        scrollToTopBtn.style.visibility = 'hidden';
+    }
+});
+
+// ===== Skills Progress Animation =====
+function animateSkills() {
+    const skillItems = document.querySelectorAll('.skill-progress');
+    
+    const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressBar = entry.target;
+                const targetWidth = progressBar.getAttribute('data-progress');
+                
+                // Animate progress bar
+                setTimeout(() => {
+                    progressBar.style.width = targetWidth + '%';
+                }, 100);
+                
+                skillsObserver.unobserve(progressBar);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    skillItems.forEach(item => {
+        skillsObserver.observe(item);
+    });
+}
+
+// Initialize skills animation when page loads
+window.addEventListener('load', () => {
+    animateSkills();
+});
+
+console.log('🚀 Enhanced Portfolio Loaded!');
+console.log('💡 Keyboard Shortcuts:');
+console.log('   Ctrl + P = Print Portfolio');
+console.log('   Ctrl + K = Open Settings');
+console.log('   ESC = Close Settings');

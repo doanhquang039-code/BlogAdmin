@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Settings Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+
+        .test-container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #6366f1;
+        }
+
+        .test-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .test-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .settings-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .settings-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .settings-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .settings-panel {
+            position: fixed;
+            right: -350px;
+            top: 0;
+            width: 340px;
+            height: 100vh;
+            background: #1e293b;
+            border-left: 2px solid rgba(99, 102, 241, 0.3);
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            z-index: 1001;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .settings-panel.active {
+            right: 0;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            background: #1e293b;
+        }
+
+        .settings-header h3 {
+            margin: 0;
+            color: white;
+        }
+
+        .close-settings {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .settings-content {
+            padding: 1.5rem;
+        }
+
+        .log {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .log-item {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .info { color: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test Settings Panel</h1>
+        
+        <p>Click button để test:</p>
+        
+        <button id="settingsBtn" class="settings-btn">
+            <i class="fas fa-cog">⚙️</i>
+        </button>
+
+        <div style="margin-top: 20px;">
+            <button class="test-btn" onclick="testElements()">🔍 Check Elements</button>
+            <button class="test-btn" onclick="testClasses()">📋 Check Classes</button>
+            <button class="test-btn" onclick="clearLog()">🗑️ Clear Log</button>
+        </div>
+
+        <div class="log" id="log"></div>
+    </div>
+
+    <!-- Settings Overlay -->
+    <div id="settingsOverlay" class="settings-overlay"></div>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel">
+        <div class="settings-header">
+            <h3>⚙️ Settings</h3>
+            <button id="closeSettings" class="close-settings">&times;</button>
+        </div>
+        <div class="settings-content">
+            <p>Settings panel is working! ✅</p>
+            <p>Click X or overlay to close.</p>
+            <p>Press ESC key to close.</p>
+        </div>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+        
+        function addLog(message, type = 'info') {
+            const item = document.createElement('div');
+            item.className = `log-item ${type}`;
+            item.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.prepend(item);
+        }
+
+        function testElements() {
+            addLog('Testing elements...', 'info');
+            
+            const settingsBtn = document.getElementById('settingsBtn');
+            const settingsPanel = document.getElementById('settingsPanel');
+            const settingsOverlay = document.getElementById('settingsOverlay');
+            
+            if (settingsBtn) {
+                addLog('✅ settingsBtn found', 'success');
+            } else {
+                addLog('❌ settingsBtn NOT found', 'error');
+            }
+            
+            if (settingsPanel) {
+                addLog('✅ settingsPanel found', 'success');
+            } else {
+                addLog('❌ settingsPanel NOT found', 'error');
+            }
+            
+            if (settingsOverlay) {
+                addLog('✅ settingsOverlay found', 'success');
+            } else {
+                addLog('❌ settingsOverlay NOT found', 'error');
+            }
+        }
+
+        function testClasses() {
+            const settingsPanel = document.getElementById('settingsPanel');
+            const settingsOverlay = document.getElementById('settingsOverlay');
+            
+            addLog(`Panel classes: ${settingsPanel.className}`, 'info');
+            addLog(`Overlay classes: ${settingsOverlay.className}`, 'info');
+        }
+
+        function clearLog() {
+            log.innerHTML = '';
+        }
+
+        // Initialize
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const settingsOverlay = document.getElementById('settingsOverlay');
+        const closeSettingsBtn = document.getElementById('closeSettings');
+
+        settingsBtn.addEventListener('click', () => {
+            addLog('Settings button clicked!', 'info');
+            settingsPanel.classList.add('active');
+            settingsOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            addLog('Classes added: active', 'success');
+        });
+
+        function closeSettings() {
+            addLog('Closing settings...', 'info');
+            settingsPanel.classList.remove('active');
+            settingsOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            addLog('Settings closed', 'success');
+        }
+
+        closeSettingsBtn.addEventListener('click', closeSettings);
+        settingsOverlay.addEventListener('click', closeSettings);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && settingsPanel.classList.contains('active')) {
+                addLog('ESC key pressed', 'info');
+                closeSettings();
+            }
+        });
+
+        addLog('Script loaded successfully', 'success');
+        addLog('Click ⚙️ button to test', 'info');
+    </script>
+</body>
+</html>

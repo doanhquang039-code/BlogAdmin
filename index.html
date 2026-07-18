@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
     <!-- View Counter & Settings -->
@@ -124,6 +125,7 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link" data-i18n="home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="about">About</a></li>
                 <li><a href="#tech" class="nav-link" data-i18n="techStack">Tech Stack</a></li>
                 <li><a href="#projects" class="nav-link" data-i18n="projects">Projects</a></li>
                 <li><a href="#contact" class="nav-link" data-i18n="contact">Contact</a></li>
@@ -144,13 +146,40 @@
                 <div class="hero-text">
                     <span class="greeting" data-i18n="hello">👋 Xin chào, tôi là</span>
                     <h1 class="hero-title">
-                        <span class="gradient-text">Đặng Quang Doanh</span>
+                        <span class="gradient-text typing-text">Đặng Quang Doanh</span>
                     </h1>
-                    <h2 class="hero-subtitle" data-i18n="heroSubtitle">Sinh viên CNTT năm 2 | Full-Stack Developer</h2>
+                    <h2 class="hero-subtitle" data-i18n="heroSubtitle">
+                        <span class="role-animator"></span>
+                    </h2>
                     <p class="hero-description" data-i18n="heroDescription">
                         🚀 <span data-i18n="passionate">Passionate</span> <span data-i18n="about">about</span> <span data-i18n="buildingInnovative">building innovative solutions</span> | 
                         💻 Spring Boot • Node.js • Flutter • Python AI
                     </p>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon">💼</div>
+                            <div class="stat-content">
+                                <span class="stat-number" data-count="9">8</span>
+                                <span class="stat-label"> Projects</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-content">
+                                <span class="stat-number" data-count="5">6</span>
+                                <span class="stat-label">  Achievements</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-content">
+                                <span class="stat-number" data-count="2">1.5</span>
+                                <span class="stat-label"> Years Coding</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="hero-info">
                         <div class="info-item">
                             <i class="fas fa-birthday-cake"></i>
@@ -217,6 +246,168 @@
         </div>
     </section>
 
+    <!-- About Me Section -->
+    <section id="about" class="about-me">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">👨‍💻 About Me</span>
+                <h2 class="section-title">Get To Know Me</h2>
+                <p class="section-description">Hành trình từ người đam mê công nghệ đến Developer</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-story">
+                    <h3>📖 My Story</h3>
+                    <p>Xin chào! Tôi là <strong>Đặng Quang Doanh</strong>, sinh viên năm 2 ngành Công nghệ Thông tin, đến từ Thái Bình. Từ nhỏ, tôi đã say mê với công nghệ và cách nó thay đổi cuộc sống con người.</p>
+                    
+                    <p>Hành trình lập trình của tôi bắt đầu từ năm 2022, khi lần đầu tiên viết dòng code "Hello World" bằng Java. Từ đó, tôi không ngừng học hỏi và phát triển, từ backend với Spring Boot, Node.js, đến frontend với React, và cả mobile development với Flutter.</p>
+                    
+                    <p>Năm 2024 là năm đặc biệt với nhiều thành tựu: Đạt học bổng toàn phần, giành giải thưởng GameKren 16M VND, và đạt chứng chỉ Google Cloud Certified. Những thành công này không chỉ là động lực mà còn là minh chứng cho sự cố gắng không ngừng nghỉ.</p>
+                    
+                    <h4>🎯 Philosophy</h4>
+                    <blockquote>
+                        "Code is not just about solving problems, it's about creating solutions that make life better."
+                    </blockquote>
+                </div>
+
+                <div class="about-details">
+                    <h3>📋 Quick Facts</h3>
+                    <div class="fact-list">
+                        <div class="fact-item">
+                            <span class="fact-icon">🎂</span>
+                            <div>
+                                <strong>Ngày sinh:</strong>
+                                <span>29/12/2006 (18 tuổi)</span>
+                            </div>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-icon">🏠</span>
+                            <div>
+                                <strong>Quê quán:</strong>
+                                <span>Thái Bình, Việt Nam</span>
+                            </div>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-icon">🎓</span>
+                            <div>
+                                <strong>Trình độ:</strong>
+                                <span>Sinh viên CNTT - Năm 2</span>
+                            </div>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-icon">💼</span>
+                            <div>
+                                <strong>Vai trò:</strong>
+                                <span>Full-Stack Developer</span>
+                            </div>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-icon">🌟</span>
+                            <div>
+                                <strong>Chuyên môn:</strong>
+                                <span>Backend, AI, Cloud</span>
+                            </div>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-icon">🗣️</span>
+                            <div>
+                                <strong>Ngôn ngữ:</strong>
+                                <span>Tiếng Việt, English, 中文</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>💪 Strengths</h3>
+                    <div class="strengths-list">
+                        <div class="strength-tag">Problem Solving</div>
+                        <div class="strength-tag">Quick Learner</div>
+                        <div class="strength-tag">Team Player</div>
+                        <div class="strength-tag">Self-Motivated</div>
+                        <div class="strength-tag">Detail-Oriented</div>
+                        <div class="strength-tag">Creative Thinker</div>
+                    </div>
+
+                    <h3>🎯 Current Focus</h3>
+                    <div class="focus-list">
+                        <div class="focus-item">
+                            <div class="focus-bar">
+                                <div class="focus-progress" style="width: 85%"></div>
+                            </div>
+                            <span>Spring Boot Microservices</span>
+                        </div>
+                        <div class="focus-item">
+                            <div class="focus-bar">
+                                <div class="focus-progress" style="width: 75%"></div>
+                            </div>
+                            <span>AI & LLM Integration</span>
+                        </div>
+                        <div class="focus-item">
+                            <div class="focus-bar">
+                                <div class="focus-progress" style="width: 70%"></div>
+                            </div>
+                            <span>Google Cloud Platform</span>
+                        </div>
+                        <div class="focus-item">
+                            <div class="focus-bar">
+                                <div class="focus-progress" style="width: 80%"></div>
+                            </div>
+                            <span>Flutter Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="life-timeline">
+                <h3 class="timeline-title">🗓️ My Journey</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2006</div>
+                        <div class="timeline-content">
+                            <h4>🎂 Born in Thái Bình</h4>
+                            <p>Chào đời tại Thái Bình, Việt Nam</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022</div>
+                        <div class="timeline-content">
+                            <h4>💻 Started Coding Journey</h4>
+                            <p>Bắt đầu học lập trình với Java, HTML, CSS</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023</div>
+                        <div class="timeline-content">
+                            <h4>🎓 University Life Begins</h4>
+                            <p>Nhập học ngành Công nghệ Thông tin</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024</div>
+                        <div class="timeline-content">
+                            <h4>🏆 Major Achievements</h4>
+                            <p>Học bổng toàn phần, GameKren Prize 16M, Google Cloud Certified</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025</div>
+                        <div class="timeline-content">
+                            <h4>🚀 Advanced Skills</h4>
+                            <p>Chuyên sâu AI, Microservices, Cloud Architecture</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026</div>
+                        <div class="timeline-content">
+                            <h4>🎯 Current Focus</h4>
+                            <p>Building scalable systems, AI integration, Open source contribution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Tech Stack Section -->
     <section id="tech" class="tech-stack">
         <div class="container">
@@ -224,6 +415,101 @@
                 <span class="section-tag" data-i18n="techStackTag">🛠️ Công nghệ</span>
                 <h2 class="section-title" data-i18n="techStackTitle">Tech Stack</h2>
                 <p class="section-description" data-i18n="techStackDesc">Các công nghệ và công cụ mà tôi thành thạo và sử dụng hàng ngày</p>
+            </div>
+
+            <!-- Skills Progress Bars -->
+            <div class="skills-overview">
+                <h3>💪 Technical Proficiency</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Backend Development</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="90"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Spring Boot</span>
+                            <span>Node.js</span>
+                            <span>Go</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Frontend Development</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="80"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>React</span>
+                            <span>TypeScript</span>
+                            <span>CSS3</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Mobile Development</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="75"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Flutter</span>
+                            <span>Android</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">AI & Machine Learning</span>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="70"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Python</span>
+                            <span>OpenAI</span>
+                            <span>LangChain</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Database & Storage</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="85"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>MySQL</span>
+                            <span>MongoDB</span>
+                            <span>Redis</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">DevOps & Cloud</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="75"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Docker</span>
+                            <span>GCP</span>
+                            <span>CI/CD</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="tech-category">
@@ -850,8 +1136,8 @@
         </div>
     </footer>
 
-    <script src="i18n.js?v=2.0"></script>
-    <script src="script.js?v=2.0"></script>
+    <script src="i18n.js?v=3.0"></script>
+    <script src="script.js?v=3.0"></script>
     
     <!-- Background Music -->
     <audio id="bgMusic" loop>
