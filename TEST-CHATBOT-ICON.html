@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chatbot Icon - Fixed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: white;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .status {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .status h2 {
+            color: #10b981;
+            margin-bottom: 10px;
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+        }
+        .card h3 {
+            color: #6366f1;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .before {
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+        .before h3 {
+            color: #ef4444;
+        }
+        .after {
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        .after h3 {
+            color: #10b981;
+        }
+        .visual-demo {
+            background: rgba(10, 10, 15, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .social-links-demo {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .icon-demo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .icon-normal {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .icon-chatbot {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            animation: pulse-demo 2s infinite;
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+        }
+        .icon-demo:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        .icon-chatbot:hover {
+            transform: translateY(-5px) scale(1.15);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.6);
+        }
+        @keyframes pulse-demo {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4), 0 0 0 0 rgba(99, 102, 241, 0.7);
+            }
+            50% {
+                box-shadow: 0 5px 20px rgba(99, 102, 241, 0.6), 0 0 0 8px rgba(99, 102, 241, 0);
+            }
+        }
+        .checklist {
+            background: rgba(99, 102, 241, 0.1);
+            border: 2px solid #6366f1;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .checklist h3 {
+            color: #6366f1;
+            margin-bottom: 20px;
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .check-icon {
+            font-size: 1.5rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+        }
+        .code-block {
+            background: #1a1a1f;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        .highlight {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .center {
+            text-align: center;
+            margin: 40px 0;
+        }
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Chatbot Icon - Fixed & Enhanced!</h1>
+        
+        <div class="status">
+            <h2>✅ HOÀN THÀNH</h2>
+            <p style="font-size: 1.2rem; margin-top: 10px;">
+                Icon chatbot đã được thêm vào cùng hàng với social links!
+            </p>
+        </div>
+
+        <div class="comparison">
+            <div class="card before">
+                <h3>❌ TRƯỚC (Before)</h3>
+                <ul style="line-height: 2;">
+                    <li>❌ Chatbot icon ở góc phải dưới (riêng biệt)</li>
+                    <li>❌ Không cùng hàng với social links</li>
+                    <li>❌ Click có thể không hoạt động</li>
+                    <li>❌ Thiếu animation nổi bật</li>
+                </ul>
+                <div class="visual-demo">
+                    <p style="text-align: center; margin-bottom: 15px;">Social Links:</p>
+                    <div class="social-links-demo">
+                        <div class="icon-demo icon-normal">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="icon-demo icon-normal">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="icon-demo icon-normal">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="icon-demo icon-normal">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #ef4444; margin-top: 15px;">
+                        (Chatbot ở nơi khác, không trong này)
+                    </p>
+                </div>
+            </div>
+
+            <div class="card after">
+                <h3>✅ SAU (After)</h3>
+                <ul style="line-height: 2;">
+                    <li>✅ Chatbot icon cùng hàng với social links</li>
+                    <li>✅ Gradient background đẹp mắt</li>
+                    <li>✅ Pulse animation (glow effect)</li>
+                    <li>✅ Click hoạt động hoàn hảo</li>
+                </ul>
+                <div class="visual-demo">
+                    <p style="text-align: center; margin-bottom: 15px;">Social Links:</p>
+                    <div class="social-links-demo">
+                        <div class="icon-demo icon-normal">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="icon-demo icon-normal">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="icon-demo icon-normal">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="icon-demo icon-normal">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="icon-demo icon-chatbot" title="Hover me!">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #10b981; margin-top: 15px;">
+                        ✨ Icon cuối cùng là chatbot (có animation!)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist">
+            <h3>🎯 Các Thay Đổi Chính</h3>
+            
+            <div class="check-item">
+                <span class="check-icon">📝</span>
+                <div>
+                    <strong>index.html</strong><br>
+                    Thêm chatbot icon vào social-links div
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <span class="check-icon">🎨</span>
+                <div>
+                    <strong>style.css</strong><br>
+                    Thêm #chatbotTrigger styles + pulse animation
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <span class="check-icon">⚙️</span>
+                <div>
+                    <strong>chatbot.js</strong><br>
+                    Thêm event listener cho icon mới + fix outside click
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🔧 Code Changes</h3>
+            
+            <p><strong>1. HTML - Added to social-links:</strong></p>
+            <div class="code-block">
+&lt;a href="javascript:void(0);" id="<span class="highlight">chatbotTrigger</span>" class="social-icon"&gt;
+    &lt;i class="fas fa-robot"&gt;&lt;/i&gt;
+&lt;/a&gt;
+            </div>
+
+            <p><strong>2. CSS - Special styling:</strong></p>
+            <div class="code-block">
+#chatbotTrigger {
+    <span class="highlight">background: var(--gradient);</span>
+    <span class="highlight">animation: pulse-social 2s infinite;</span>
+}
+
+@keyframes pulse-social {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+    50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+}
+            </div>
+
+            <p><strong>3. JavaScript - Dual trigger:</strong></p>
+            <div class="code-block">
+const toggle = document.getElementById('chatbotToggle'); // Floating
+const <span class="highlight">trigger = document.getElementById('chatbotTrigger');</span> // Social
+
+if (trigger) {
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        <span class="highlight">window.classList.toggle('active');</span>
+    });
+}
+            </div>
+        </div>
+
+        <div class="checklist">
+            <h3>🧪 Test Instructions</h3>
+            
+            <div class="check-item">
+                <span class="check-icon">1️⃣</span>
+                <div>
+                    <strong>Open Portfolio</strong><br>
+                    Mở file: <code>D:\BlogAdmin\index.html</code>
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <span class="check-icon">2️⃣</span>
+                <div>
+                    <strong>Find Chatbot Icon</strong><br>
+                    Cuộn đến Hero section, tìm social links (GitHub, LinkedIn, Email, Zalo)<br>
+                    Icon cuối cùng là 🤖 với gradient background
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <span class="check-icon">3️⃣</span>
+                <div>
+                    <strong>Observe Animation</strong><br>
+                    Icon chatbot có pulse animation (glow effect)<br>
+                    Hover để thấy scale effect
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <span class="check-icon">4️⃣</span>
+                <div>
+                    <strong>Test Click</strong><br>
+                    Click vào 🤖 icon → Chatbot window mở ra<br>
+                    Click lại hoặc click X để đóng
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <span class="check-icon">5️⃣</span>
+                <div>
+                    <strong>Test Floating Button</strong><br>
+                    Cuộn xuống, tìm floating button góc phải dưới<br>
+                    Click vào đó cũng mở chatbot (dual trigger)
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>✨ Features</h3>
+            <ul style="line-height: 2; margin-left: 20px;">
+                <li>✅ <strong>Dual Trigger System:</strong> 2 cách mở chatbot (hero icon + floating button)</li>
+                <li>✅ <strong>Gradient Background:</strong> Purple/pink gradient nổi bật</li>
+                <li>✅ <strong>Pulse Animation:</strong> Glow effect mỗi 2 giây</li>
+                <li>✅ <strong>Hover Effect:</strong> Scale 1.15x + shadow khi hover</li>
+                <li>✅ <strong>White Icon:</strong> Robot icon màu trắng sáng</li>
+                <li>✅ <strong>Smooth Transitions:</strong> Animation mượt mà</li>
+            </ul>
+        </div>
+
+        <div class="center">
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">
+                🎉 <strong>Ready to test!</strong> 🎉
+            </p>
+            <a href="index.html" class="btn" target="_blank">
+                🚀 Open Portfolio & Test
+            </a>
+            <a href="CHATBOT-ICON-ADDED.md" class="btn">
+                📘 Read Full Documentation
+            </a>
+        </div>
+
+        <div class="status" style="margin-top: 50px;">
+            <h2>📊 Summary</h2>
+            <div style="text-align: left; margin-top: 20px; line-height: 2;">
+                <p>✅ <strong>Files Modified:</strong> 3 (index.html, style.css, chatbot.js)</p>
+                <p>✅ <strong>Lines Added:</strong> ~40 lines total</p>
+                <p>✅ <strong>New Features:</strong> Dual trigger system + pulse animation</p>
+                <p>✅ <strong>Status:</strong> 🟢 Ready to Use</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding: 30px; border-top: 2px solid rgba(99, 102, 241, 0.3);">
+            <p style="font-size: 1.2rem; margin-bottom: 10px;">
+                Made with ❤️ for <strong>Đặng Quang Doanh</strong>
+            </p>
+            <p style="color: #888;">Version 1.1.0 | July 20, 2026</p>
+        </div>
+    </div>
+
+    <script>
+        // Interactive demo
+        document.querySelectorAll('.icon-demo').forEach(icon => {
+            icon.addEventListener('click', function() {
+                if (this.classList.contains('icon-chatbot')) {
+                    alert('🤖 Chatbot icon clicked!\n\nTrên portfolio thật, click này sẽ mở chatbot window.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -85,6 +85,24 @@ const translations = {
         interestsTag: '🎮 Sở Thích',
         myInterests: 'Sở Thích Của Tôi',
         interestsDesc: 'Những điều tôi yêu thích ngoài lập trình',
+        
+        // Chatbot
+        chatbotTitle: 'Portfolio AI Assistant',
+        chatbotStatus: 'Powered by Gemini AI',
+        chatbotWelcome: '👋 Xin chào! Tôi là AI Assistant của Đặng Quang Doanh.',
+        chatbotHelp: 'Tôi có thể giúp bạn:',
+        chatbotHelp1: '📋 Thông tin về kinh nghiệm và kỹ năng',
+        chatbotHelp2: '💼 Chi tiết các dự án',
+        chatbotHelp3: '🤖 Nghiên cứu AI & công nghệ',
+        chatbotHelp4: '📧 Thông tin liên hệ',
+        chatbotAsk: 'Hãy hỏi tôi bất cứ điều gì! 😊',
+        chatbotPlaceholder: 'Nhập câu hỏi của bạn...',
+        chatbotQuick1: '💼 Kinh nghiệm',
+        chatbotQuick2: '🤖 Dự án AI',
+        chatbotQuick3: '⭐ Kỹ năng',
+        chatbotQuestion1: 'Kinh nghiệm làm việc của bạn là gì?',
+        chatbotQuestion2: 'Bạn có những dự án AI nào?',
+        chatbotQuestion3: 'Kỹ năng nổi bật của bạn?',
     },
     en: {
         // Navigation
@@ -169,6 +187,24 @@ const translations = {
         interestsTag: '🎮 Interests',
         myInterests: 'My Interests',
         interestsDesc: 'Things I love besides coding',
+        
+        // Chatbot
+        chatbotTitle: 'Portfolio AI Assistant',
+        chatbotStatus: 'Powered by Gemini AI',
+        chatbotWelcome: '👋 Hello! I am Dang Quang Doanh\'s AI Assistant.',
+        chatbotHelp: 'I can help you with:',
+        chatbotHelp1: '📋 Information about experience and skills',
+        chatbotHelp2: '💼 Project details',
+        chatbotHelp3: '🤖 AI research & technology',
+        chatbotHelp4: '📧 Contact information',
+        chatbotAsk: 'Feel free to ask me anything! 😊',
+        chatbotPlaceholder: 'Type your question...',
+        chatbotQuick1: '💼 Experience',
+        chatbotQuick2: '🤖 AI Projects',
+        chatbotQuick3: '⭐ Skills',
+        chatbotQuestion1: 'What is your work experience?',
+        chatbotQuestion2: 'What AI projects do you have?',
+        chatbotQuestion3: 'What are your key skills?',
     },
     zh: {
         // Navigation
@@ -253,6 +289,24 @@ const translations = {
         interestsTag: '🎮 兴趣',
         myInterests: '我的兴趣',
         interestsDesc: '除了编程之外我喜欢的东西',
+        
+        // Chatbot
+        chatbotTitle: '作品集AI助手',
+        chatbotStatus: '由Gemini AI提供支持',
+        chatbotWelcome: '👋 你好！我是Đặng Quang Doanh的AI助手。',
+        chatbotHelp: '我可以帮你：',
+        chatbotHelp1: '📋 经验和技能信息',
+        chatbotHelp2: '💼 项目详情',
+        chatbotHelp3: '🤖 AI研究与技术',
+        chatbotHelp4: '📧 联系信息',
+        chatbotAsk: '随时问我任何问题！😊',
+        chatbotPlaceholder: '输入您的问题...',
+        chatbotQuick1: '💼 经验',
+        chatbotQuick2: '🤖 AI项目',
+        chatbotQuick3: '⭐ 技能',
+        chatbotQuestion1: '你的工作经验是什么？',
+        chatbotQuestion2: '你有哪些AI项目？',
+        chatbotQuestion3: '你的主要技能是什么？',
     }
 };
 
@@ -305,6 +359,14 @@ function setLanguage(lang) {
         }
     });
     
+    // Update all elements with data-i18n-placeholder attribute (for input/textarea)
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+            element.placeholder = translations[lang][key];
+        }
+    });
+    
     // Update language attribute
     document.documentElement.lang = lang;
     
@@ -334,6 +396,11 @@ function updateLanguageButtons() {
 // Get current language
 function getCurrentLanguage() {
     return currentLanguage;
+}
+
+// Get all translations
+function getTranslations() {
+    return translations;
 }
 
 // Change language (public API)

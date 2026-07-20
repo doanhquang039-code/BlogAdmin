@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
     <!-- View Counter & Settings -->
@@ -225,6 +226,9 @@
                         </a>
                         <a href="https://zalo.me/0373542892" target="_blank" class="social-icon" title="Zalo">
                             <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="javascript:void(0);" id="chatbotTrigger" class="social-icon" title="AI Chatbot">
+                            <i class="fas fa-robot"></i>
                         </a>
                     </div>
                 </div>
@@ -1456,5 +1460,105 @@
     <audio id="bgMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- AI Chatbot -->
+    <div id="chatbotContainer" class="chatbot-container">
+        <!-- Chatbot Button -->
+        <button id="chatbotToggle" class="chatbot-toggle" title="Chat with AI Assistant">
+            <i class="fas fa-robot"></i>
+            <span class="chatbot-badge">AI</span>
+        </button>
+
+        <!-- Chatbot Window -->
+        <div id="chatbotWindow" class="chatbot-window">
+            <!-- Header -->
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <div class="chatbot-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4 data-i18n="chatbotTitle">Portfolio AI Assistant</h4>
+                        <p class="chatbot-status">
+                            <span class="status-dot online"></span>
+                            <span data-i18n="chatbotStatus">Powered by Gemini AI</span>
+                        </p>
+                    </div>
+                </div>
+                <button id="chatbotClose" class="chatbot-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Messages Container -->
+            <div id="chatbotMessages" class="chatbot-messages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p data-i18n="chatbotWelcome">👋 Xin chào! Tôi là AI Assistant của Đặng Quang Doanh.</p>
+                        <p data-i18n="chatbotHelp">Tôi có thể giúp bạn:</p>
+                        <ul>
+                            <li data-i18n="chatbotHelp1">📋 Thông tin về kinh nghiệm và kỹ năng</li>
+                            <li data-i18n="chatbotHelp2">💼 Chi tiết các dự án</li>
+                            <li data-i18n="chatbotHelp3">🤖 Nghiên cứu AI & công nghệ</li>
+                            <li data-i18n="chatbotHelp4">📧 Thông tin liên hệ</li>
+                        </ul>
+                        <p data-i18n="chatbotAsk">Hãy hỏi tôi bất cứ điều gì! 😊</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div id="typingIndicator" class="typing-indicator" style="display: none;">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="quick-action-btn" data-question-key="chatbotQuestion1">
+                    <span data-i18n="chatbotQuick1">💼 Kinh nghiệm</span>
+                </button>
+                <button class="quick-action-btn" data-question-key="chatbotQuestion2">
+                    <span data-i18n="chatbotQuick2">🤖 Dự án AI</span>
+                </button>
+                <button class="quick-action-btn" data-question-key="chatbotQuestion3">
+                    <span data-i18n="chatbotQuick3">⭐ Kỹ năng</span>
+                </button>
+            </div>
+
+            <!-- Input Form -->
+            <form id="chatbotForm" class="chatbot-input-form">
+                <input 
+                    type="text" 
+                    id="chatbotInput" 
+                    class="chatbot-input" 
+                    data-i18n-placeholder="chatbotPlaceholder"
+                    placeholder="Nhập câu hỏi của bạn..."
+                    autocomplete="off"
+                />
+                <button type="submit" class="chatbot-send-btn" title="Send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <!-- API Key Warning (if not set) -->
+            <div id="apiKeyWarning" class="api-key-warning" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Vui lòng cấu hình Gemini API Key trong chatbot.js</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Script -->
+    <script src="chatbot.js?v=1.0"></script>
 </body>
 </html>

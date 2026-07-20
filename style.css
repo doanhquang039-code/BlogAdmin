@@ -619,6 +619,31 @@ body {
     transform: translateY(-5px) scale(1.1);
 }
 
+/* Chatbot Icon Special Style */
+#chatbotTrigger {
+    background: var(--gradient);
+    animation: pulse-social 2s infinite;
+    position: relative;
+}
+
+#chatbotTrigger i {
+    color: white;
+}
+
+#chatbotTrigger:hover {
+    transform: translateY(-5px) scale(1.15);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.6);
+}
+
+@keyframes pulse-social {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(99, 102, 241, 0);
+    }
+}
+
 /* Profile Card */
 .profile-card {
     text-align: center;

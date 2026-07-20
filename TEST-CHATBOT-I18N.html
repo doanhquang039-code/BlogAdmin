@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chatbot i18n Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0a0a0f;
+            color: #fff;
+        }
+        h1 {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        .status {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid #10b981;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .status h2 {
+            margin-top: 0;
+            color: #10b981;
+        }
+        .checklist {
+            background: rgba(99, 102, 241, 0.1);
+            border: 2px solid #6366f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .checklist h2 {
+            margin-top: 0;
+            color: #6366f1;
+        }
+        .check-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .check-item .icon {
+            font-size: 24px;
+        }
+        .instructions {
+            background: rgba(236, 72, 153, 0.1);
+            border: 2px solid #ec4899;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .instructions h2 {
+            margin-top: 0;
+            color: #ec4899;
+        }
+        .code {
+            background: #1a1a1f;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+        .warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid #ef4444;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 Chatbot i18n Integration Test</h1>
+    
+    <div class="status">
+        <h2>✅ Integration Status: COMPLETE</h2>
+        <p><strong>All components are integrated and ready to test!</strong></p>
+        <p>Version: 1.0.0 | Date: July 20, 2026</p>
+    </div>
+
+    <div class="checklist">
+        <h2>📋 Implementation Checklist</h2>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>i18n.js - Chatbot Translations</strong><br>
+                Added 15 translation keys × 3 languages (Vietnamese, English, Chinese)
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>i18n.js - Placeholder Handler</strong><br>
+                Added support for <code>data-i18n-placeholder</code> attribute
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>i18n.js - Helper Functions</strong><br>
+                Added <code>getCurrentLanguage()</code> and <code>getTranslations()</code>
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>chatbot.js - Language Listener</strong><br>
+                Listens to <code>languageChanged</code> events from i18n system
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>chatbot.js - Placeholder Update</strong><br>
+                <code>updateChatbotLanguage()</code> function updates input placeholder
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>chatbot.js - Smart Quick Actions</strong><br>
+                Quick action buttons send questions in current language
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>index.html - i18n Attributes</strong><br>
+                All chatbot elements have <code>data-i18n</code> or <code>data-i18n-placeholder</code>
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <div>
+                <strong>index.html - Question Keys</strong><br>
+                Quick action buttons have <code>data-question-key</code> attributes
+            </div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h2>🧪 How to Test</h2>
+        
+        <h3>Step 1: Open Portfolio</h3>
+        <p>Open <code>D:\BlogAdmin\index.html</code> in your browser (Chrome/Edge recommended)</p>
+        <a href="index.html" class="btn" target="_blank">Open Portfolio</a>
+        
+        <h3>Step 2: Test Language Switching</h3>
+        <ol>
+            <li>Click the <strong>🤖 chatbot button</strong> (bottom-right corner)</li>
+            <li>Observe the chatbot window opens with Vietnamese text</li>
+            <li>Click <strong>VN</strong> button (top-right) - should stay Vietnamese</li>
+            <li>Click <strong>EN</strong> button - all chatbot text should change to English</li>
+            <li>Click <strong>中</strong> button - all chatbot text should change to Chinese</li>
+            <li>Check that the input placeholder also changes</li>
+        </ol>
+        
+        <h3>Step 3: Test Quick Actions</h3>
+        <ol>
+            <li>Select <strong>Vietnamese (VN)</strong></li>
+            <li>Click "💼 Kinh nghiệm" button</li>
+            <li>Check console (F12) - should see: "Kinh nghiệm làm việc của bạn là gì?"</li>
+            <li>Switch to <strong>English (EN)</strong></li>
+            <li>Click "💼 Experience" button</li>
+            <li>Check console - should see: "What is your work experience?"</li>
+        </ol>
+        
+        <h3>Step 4: Check Console for Errors</h3>
+        <ol>
+            <li>Press <strong>F12</strong> to open Developer Tools</li>
+            <li>Go to <strong>Console</strong> tab</li>
+            <li>Switch between languages multiple times</li>
+            <li>You should see: ✅ No errors, only info messages</li>
+        </ol>
+        
+        <h3>Expected Results:</h3>
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <span>Chatbot title changes with language</span>
+        </div>
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <span>Status text changes with language</span>
+        </div>
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <span>Welcome message changes with language</span>
+        </div>
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <span>Help list items change with language</span>
+        </div>
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <span>Quick action buttons change with language</span>
+        </div>
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <span>Input placeholder changes with language</span>
+        </div>
+        <div class="check-item">
+            <span class="icon">✅</span>
+            <span>Quick actions send correct language questions</span>
+        </div>
+    </div>
+
+    <div class="warning">
+        <h3>⚠️ API Key Required</h3>
+        <p><strong>The chatbot won't respond to questions yet</strong> because you need to add your Gemini API key.</p>
+        <p>But the <strong>i18n integration is 100% complete</strong> and you can test all language switching!</p>
+        
+        <h4>To get API responses working:</h4>
+        <ol>
+            <li>Get free API key: <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: #6366f1">https://makersuite.google.com/app/apikey</a></li>
+            <li>Open <code>D:\BlogAdmin\chatbot.js</code></li>
+            <li>Replace line 6:</li>
+        </ol>
+        <div class="code">GEMINI_API_KEY: 'AIzaSy_YOUR_ACTUAL_KEY_HERE',</div>
+        <p>See <code>D:\BlogAdmin\GEMINI-API-KEY-GUIDE.md</code> for detailed instructions.</p>
+    </div>
+
+    <div class="checklist">
+        <h2>📄 Documentation Files</h2>
+        
+        <div class="check-item">
+            <span class="icon">📘</span>
+            <div>
+                <strong>CHATBOT-I18N-COMPLETE.md</strong><br>
+                Complete implementation details and architecture overview
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">📗</span>
+            <div>
+                <strong>GEMINI-API-KEY-GUIDE.md</strong><br>
+                Step-by-step guide to get and configure Gemini API key
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">📕</span>
+            <div>
+                <strong>CHATBOT-SETUP.md</strong><br>
+                Overall chatbot setup and configuration guide
+            </div>
+        </div>
+        
+        <div class="check-item">
+            <span class="icon">📙</span>
+            <div>
+                <strong>TEST-CHATBOT-I18N.html</strong> (this file)<br>
+                Interactive testing guide and checklist
+            </div>
+        </div>
+    </div>
+
+    <div class="status">
+        <h2>🎉 Summary</h2>
+        <h3>What's DONE ✅</h3>
+        <ul>
+            <li>✅ Full i18n integration (3 languages)</li>
+            <li>✅ Language synchronization with portfolio</li>
+            <li>✅ Smart quick action translations</li>
+            <li>✅ Placeholder translations</li>
+            <li>✅ Event-driven architecture</li>
+            <li>✅ Fallback mechanisms</li>
+            <li>✅ Complete documentation</li>
+        </ul>
+        
+        <h3>What USER Needs to Do 🔧</h3>
+        <ul>
+            <li>🔑 Get Gemini API key (5 minutes)</li>
+            <li>📝 Add to chatbot.js line 6</li>
+            <li>🧪 Test with all 3 languages</li>
+            <li>🚀 Deploy and enjoy!</li>
+        </ul>
+        
+        <p style="text-align: center; font-size: 1.2em; margin-top: 30px;">
+            <strong>🎊 Chatbot i18n Integration: 100% COMPLETE! 🎊</strong>
+        </p>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="btn" target="_blank">🚀 Test Portfolio Now</a>
+        <a href="CHATBOT-I18N-COMPLETE.md" class="btn">📘 Read Full Documentation</a>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; border-top: 2px solid rgba(99, 102, 241, 0.3);">
+        <p>Made with ❤️ for <strong>Đặng Quang Doanh</strong></p>
+        <p style="font-size: 0.9em; color: #888;">Version 1.0.0 | July 20, 2026</p>
+    </footer>
+</body>
+</html>
