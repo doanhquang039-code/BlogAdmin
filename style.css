@@ -649,6 +649,71 @@ body {
     text-align: center;
 }
 
+/* Profile Chatbot Button - Next to Profile Image */
+.profile-chatbot-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient);
+    border: 3px solid var(--dark-bg);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    z-index: 10;
+}
+
+.profile-chatbot-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6);
+}
+
+.profile-chatbot-btn i {
+    color: white;
+}
+
+/* Chat Pulse Animation for Profile Button */
+.chat-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.3);
+    animation: chatPulse 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes chatPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Make profile-img-wrapper relative for absolute positioning */
+.profile-img-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
 .profile-img-wrapper {
     position: relative;
     width: 350px;

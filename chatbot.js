@@ -4,7 +4,7 @@
 const CHATBOT_CONFIG = {
     // ⚠️ IMPORTANT: Replace with your Gemini API Key
     // Get free API key at: https://makersuite.google.com/app/apikey
-    GEMINI_API_KEY: 'AIzaSyAQ.Ab8RNIoRcCCd00DRY4kn5Fl6uPKmlzzinLMfDX383Fmng95Gw', // ✅ API key đã được thêm!
+    GEMINI_API_KEY: 'AIzaSyAQ-Ab8RN6ILGNs-qbYZZgDBc4IkkTb5ZV5YL6sUy-ahyltWyp13eg', // ✅ NEW API key updated!
     GEMINI_API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',
     
     // Context about portfolio owner
@@ -75,6 +75,7 @@ let conversationHistory = [];
 function initChatbot() {
     const toggle = document.getElementById('chatbotToggle');
     const trigger = document.getElementById('chatbotTrigger'); // Social icon trigger
+    const profileTrigger = document.getElementById('chatbotProfileTrigger'); // Profile trigger - NEW!
     const close = document.getElementById('chatbotClose');
     const window = document.getElementById('chatbotWindow');
     const form = document.getElementById('chatbotForm');
@@ -104,6 +105,17 @@ function initChatbot() {
     // Toggle chatbot (social icon)
     if (trigger) {
         trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.classList.toggle('active');
+            if (window.classList.contains('active')) {
+                input.focus();
+            }
+        });
+    }
+    
+    // Toggle chatbot (profile button) - NEW!
+    if (profileTrigger) {
+        profileTrigger.addEventListener('click', (e) => {
             e.preventDefault();
             window.classList.toggle('active');
             if (window.classList.contains('active')) {
@@ -150,7 +162,9 @@ function initChatbot() {
     document.addEventListener('click', (e) => {
         const container = document.getElementById('chatbotContainer');
         const triggerIcon = document.getElementById('chatbotTrigger');
-        if (container && !container.contains(e.target) && e.target !== triggerIcon) {
+        const profileTriggerIcon = document.getElementById('chatbotProfileTrigger'); // NEW!
+        if (container && !container.contains(e.target) && 
+            e.target !== triggerIcon && e.target !== profileTriggerIcon) {
             window.classList.remove('active');
         }
     });
@@ -184,8 +198,16 @@ async function sendMessage(message) {
     });
     
     try {
-        // Call Gemini API
-        const response = await callGeminiAPI(message);
+        // TEMPORARY: Use fallback first, then try API
+        let response;
+        try {
+            // Try API first
+            response = await callGeminiAPI(message);
+        } catch (apiError) {
+            console.log('API failed, using fallback:', apiError.message);
+            // If API fails, use fallback
+            response = getFallbackResponse(message);
+        }
         
         // Hide typing indicator
         hideTypingIndicator();
@@ -201,7 +223,9 @@ async function sendMessage(message) {
         
     } catch (error) {
         hideTypingIndicator();
-        addMessage('❌ Xin lỗi, có lỗi xảy ra. Vui lòng thử lại sau hoặc liên hệ trực tiếp qua email: doanhquang039@gmail.com', 'bot');
+        // Use fallback as last resort
+        const fallbackResponse = getFallbackResponse(message);
+        addMessage(fallbackResponse, 'bot');
         console.error('Chatbot error:', error);
     }
 }
@@ -210,7 +234,8 @@ async function sendMessage(message) {
 async function callGeminiAPI(userMessage) {
     // Check API key
     if (CHATBOT_CONFIG.GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
-        return '⚠️ API Key chưa được cấu hình. Vui lòng cập nhật GEMINI_API_KEY trong file chatbot.js.\n\n📧 Bạn có thể liên hệ trực tiếp:\n- Email: doanhquang039@gmail.com\n- LinkedIn: https://www.linkedin.com/in/doanh-quang-0a4561407/';
+        // Fallback responses - no API needed
+        return getFallbackResponse(userMessage);
     }
     
     const url = `${CHATBOT_CONFIG.GEMINI_API_URL}?key=${CHATBOT_CONFIG.GEMINI_API_KEY}`;
@@ -267,6 +292,157 @@ async function callGeminiAPI(userMessage) {
     } else {
         throw new Error('Invalid API response');
     }
+}
+
+// Fallback responses (no API needed)
+function getFallbackResponse(userMessage) {
+    const message = userMessage.toLowerCase();
+    
+    // Về kinh nghiệm
+    if (message.includes('kinh nghiệm') || message.includes('experience') || message.includes('làm việc')) {
+        return `👋 Xin chào! Tôi là **Đặng Quang Doanh**, sinh viên năm 2 CNTT với 2 năm kinh nghiệm lập trình.
+
+**💼 Kinh nghiệm chính:**
+- **Backend:** Spring Boot (90%), Node.js, Go, C#/.NET
+- **Frontend:** React, TypeScript, HTML5, CSS3 (80%)
+- **Mobile:** Flutter (75%), Android
+- **AI/ML:** Python, OpenAI API, Gemini API (70%)
+- **Database:** MySQL, MongoDB, SQL Server (85%)
+- **DevOps:** Docker, GCP, CI/CD (75%)
+
+**🏆 Thành tựu:**
+- Google Cloud Certified (2026)
+- Học Bổng Toàn Phần (2024)
+- GameKren Prize 16M VND (2024)
+
+📧 **Liên hệ:** doanhquang039@gmail.com`;
+    }
+    
+    // Về dự án AI
+    if (message.includes('dự án ai') || message.includes('ai project') || message.includes('artificial intelligence')) {
+        return `🤖 **Dự án AI nổi bật của tôi:**
+
+**1. 🎯 Intelligent Expense Tracker**
+- AI-powered financial assistant
+- Auto-categorization với NLP (95% accuracy)
+- Spending prediction với Time Series
+- Tech: Python, OpenAI API, FastAPI, Flutter
+
+**2. 💬 HR Management Chatbot**
+- Conversational AI với LangChain
+- RAG với company knowledge base
+- Multi-turn conversation
+- Tech: LangChain, ChromaDB, Spring Boot
+
+**3. 🔍 AI Code Review Assistant**
+- Automated code analysis với GPT-4
+- Code smell detection
+- Security vulnerability scan
+- Tech: GPT-4, GitHub API, Node.js
+
+**🔬 Nghiên cứu hiện tại:**
+- Prompt Engineering
+- RAG (Retrieval Augmented Generation)
+- LLM Fine-tuning
+- AI Safety & Ethics
+
+Muốn biết chi tiết dự án nào? 😊`;
+    }
+    
+    // Về kỹ năng
+    if (message.includes('kỹ năng') || message.includes('skill') || message.includes('công nghệ')) {
+        return `⭐ **Kỹ năng chính của tôi:**
+
+**🖥️ Backend (90%):**
+- Spring Boot, Node.js, Express.js
+- Go, C#/.NET, RESTful APIs
+- Microservices Architecture
+
+**🌐 Frontend (80%):**
+- React, TypeScript, JavaScript
+- HTML5, CSS3, Responsive Design
+
+**📱 Mobile (75%):**
+- Flutter, Android Development
+- Cross-platform Apps
+
+**🤖 AI/ML (70%):**
+- Python, OpenAI API, Gemini API
+- LangChain, FastAPI
+- NLP, Machine Learning
+
+**💾 Database (85%):**
+- MySQL, MongoDB, SQL Server
+- Database Design, Optimization
+
+**☁️ DevOps (75%):**
+- Docker, Google Cloud Platform
+- CI/CD, Git, GitHub
+
+**Điểm mạnh:** Problem Solving, Quick Learner, Team Player`;
+    }
+    
+    // Liên hệ
+    if (message.includes('liên hệ') || message.includes('contact') || message.includes('email') || message.includes('phone')) {
+        return `📞 **Thông tin liên hệ:**
+
+📧 **Email:** doanhquang039@gmail.com
+💼 **LinkedIn:** https://www.linkedin.com/in/doanh-quang-0a4561407/
+🐱 **GitHub:** https://github.com/doanhquang039-code
+📱 **Zalo:** 0373542892
+
+**📍 Địa chỉ:** Thái Bình, Việt Nam
+**🎓 Trường:** Sinh viên CNTT năm 2
+
+**💌 Sẵn sàng hợp tác cho:**
+- Dự án fullstack development
+- Ứng dụng AI/ML
+- Mobile app development
+- Consulting & mentoring
+
+Hãy liên hệ với tôi! 😊`;
+    }
+    
+    // Giới thiệu chung
+    if (message.includes('giới thiệu') || message.includes('about') || message.includes('bạn là ai')) {
+        return `👋 **Xin chào! Tôi là Đặng Quang Doanh**
+
+🎓 **Sinh viên CNTT năm 2** đến từ Thái Bình
+💻 **Full-Stack Developer** với đam mê AI/ML
+🚀 **2 năm kinh nghiệm** phát triển ứng dụng
+
+**🌟 Đặc điểm nổi bật:**
+- Học nhanh, thích thử công nghệ mới
+- Tập trung vào chất lượng code
+- Yêu thích giải quyết vấn đề phức tạp
+- Đam mê xây dựng sản phẩm có ý nghĩa
+
+**🎯 Mục tiêu:**
+"Xây dựng những sản phẩm giải quyết vấn đề thực tế, giúp cuộc sống tốt đẹp hơn"
+
+**💡 Hiện tại:** Đang tìm kiếm cơ hội thực tập/làm việc trong lĩnh vực phát triển phần mềm và AI.
+
+Bạn muốn biết thêm gì về tôi? 😊`;
+    }
+    
+    // Default response
+    return `👋 **Xin chào!** Tôi là AI Assistant của **Đặng Quang Doanh**.
+
+Tôi có thể giúp bạn tìm hiểu về:
+- 💼 **Kinh nghiệm** làm việc và kỹ năng
+- 🤖 **Dự án AI** và công nghệ
+- ⭐ **Kỹ năng** chuyên môn
+- 📞 **Thông tin liên hệ**
+
+**Hãy hỏi tôi bất cứ điều gì!** 
+
+*Ví dụ:*
+- "Kinh nghiệm làm việc của bạn là gì?"
+- "Bạn có những dự án AI nào?"
+- "Kỹ năng nổi bật của bạn?"
+- "Thông tin liên hệ"
+
+😊 **Tôi sẵn sàng hỗ trợ bạn!**`;
 }
 
 // Add message to chat
