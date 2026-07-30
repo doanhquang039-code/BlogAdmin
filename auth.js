@@ -18,13 +18,15 @@ const firebaseConfig = {
 // Initialize Firebase (Only if config is provided)
 let auth;
 let database;
-let provider;
+let googleProvider;
+let githubProvider;
 
 if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
     firebase.initializeApp(firebaseConfig);
     auth = firebase.auth();
     database = firebase.database();
-    provider = new firebase.auth.GoogleAuthProvider();
+    googleProvider = new firebase.auth.GoogleAuthProvider();
+    githubProvider = new firebase.auth.GithubAuthProvider();
 } else {
     console.warn("⚠️ Firebase chưa được cấu hình. Vui lòng cập nhật firebaseConfig trong auth.js!");
 }
@@ -37,21 +39,52 @@ const userAvatar = document.getElementById('userAvatar');
 const gatedElements = document.querySelectorAll('.auth-gated');
 const gatedButtons = document.querySelectorAll('.auth-gated-btn');
 
+// Dropdown Elements
+const loginDropdown = document.getElementById('loginDropdown');
+const googleLoginBtn = document.getElementById('googleLoginBtn');
+const githubLoginBtn = document.getElementById('githubLoginBtn');
+
 // Global User State
 window.currentUser = null;
 
-// Event Listeners
-if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
-        if (!auth) {
-            alert("Tính năng đăng nhập đang được bảo trì (Thiếu Firebase Config).");
-            return;
+// Dropdown Logic
+function toggleLoginDropdown(e) {
+    if (!auth) {
+        alert("Tính năng đăng nhập đang được bảo trì (Thiếu Firebase Config).");
+        return;
+    }
+    e.stopPropagation(); // Prevent document click from closing immediately
+    loginDropdown.classList.toggle('active');
+}
+
+function closeLoginDropdown(e) {
+    if (loginDropdown && loginDropdown.classList.contains('active')) {
+        // Close if clicked outside
+        if (!e || (!loginDropdown.contains(e.target) && !loginBtn.contains(e.target))) {
+            loginDropdown.classList.remove('active');
         }
-        auth.signInWithPopup(provider).catch((error) => {
-            console.error("Lỗi đăng nhập:", error);
-            alert("Lỗi đăng nhập: " + error.message);
-        });
+    }
+}
+
+// Event Listeners
+if (loginBtn) loginBtn.addEventListener('click', toggleLoginDropdown);
+document.addEventListener('click', closeLoginDropdown);
+
+function handleAuthPopup(provider) {
+    auth.signInWithPopup(provider).then(() => {
+        loginDropdown.classList.remove('active');
+    }).catch((error) => {
+        console.error("Lỗi đăng nhập:", error);
+        alert("Lỗi đăng nhập: " + error.message);
     });
+}
+
+if (googleLoginBtn) {
+    googleLoginBtn.addEventListener('click', () => handleAuthPopup(googleProvider));
+}
+
+if (githubLoginBtn) {
+    githubLoginBtn.addEventListener('click', () => handleAuthPopup(githubProvider));
 }
 
 if (logoutBtn) {

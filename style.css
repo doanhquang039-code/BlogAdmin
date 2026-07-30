@@ -2056,15 +2056,30 @@ body.light-mode .hamburger span {
     .top-controls {
         right: 0.5rem;
         top: 65px;
+        gap: 0.5rem;
     }
     
     .language-selector {
         left: 0.5rem;
         top: 65px;
+        gap: 0.2rem;
+        padding: 0.3rem;
     }
     
     .view-label {
         display: none;
+    }
+
+    .auth-btn span {
+        display: none;
+    }
+
+    .auth-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
     }
     
     .settings-btn {
@@ -2074,9 +2089,9 @@ body.light-mode .hamburger span {
     }
     
     .lang-btn {
-        min-width: 40px;
-        min-height: 38px;
-        padding: 0.4rem 0.6rem;
+        min-width: 36px;
+        min-height: 34px;
+        padding: 0.3rem 0.5rem;
     }
     
     .tech-card {
@@ -2174,11 +2189,6 @@ body.light-mode .hamburger span {
 }
 
 /* Auth UI */
-.auth-container {
-    display: flex;
-    align-items: center;
-}
-
 .auth-btn {
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2189,7 +2199,6 @@ body.light-mode .hamburger span {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
@@ -2297,3 +2306,76 @@ body.light-mode .hamburger span {
     opacity: 1;
     pointer-events: auto;
 }
+
+/* Login Dropdown */
+.auth-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 160px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.login-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.login-provider-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.google-btn {
+    background: #ffffff;
+    color: #3c4043;
+    border-color: #dadce0;
+}
+
+.google-btn:hover {
+    background: #f8f9fa;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3);
+}
+
+.github-btn {
+    background: #24292e;
+    color: #ffffff;
+}
+
+.github-btn:hover {
+    background: #2f363d;
+}
+
+.github-btn i {
+    font-size: 1.1rem;
+}
+

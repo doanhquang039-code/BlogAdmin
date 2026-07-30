@@ -21,8 +21,16 @@
     <div class="top-controls">
         <div id="authContainer" class="auth-container">
             <button id="loginBtn" class="auth-btn">
-                <i class="fab fa-google"></i> <span data-i18n="login">Login</span>
+                <i class="fas fa-sign-in-alt"></i> <span data-i18n="login">Login</span>
             </button>
+            <div id="loginDropdown" class="login-dropdown">
+                <button id="googleLoginBtn" class="login-provider-btn google-btn">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" width="20" height="20"> Google
+                </button>
+                <button id="githubLoginBtn" class="login-provider-btn github-btn">
+                    <i class="fab fa-github"></i> GitHub
+                </button>
+            </div>
             <div id="userProfile" class="user-profile" style="display: none;">
                 <img id="userAvatar" src="" alt="User" class="user-avatar" title="Logged in">
                 <button id="logoutBtn" class="logout-btn" title="Logout"><i class="fas fa-sign-out-alt"></i></button>
@@ -39,6 +47,7 @@
             <i class="fas fa-cog"></i>
         </button>
     </div>
+
 
     <!-- Settings Panel Overlay -->
     <div id="settingsOverlay" class="settings-overlay"></div>
