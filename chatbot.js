@@ -426,7 +426,13 @@ Bạn muốn biết thêm gì về tôi? 😊`;
     }
     
     // Default response
-    return `👋 **Xin chào!** Tôi là AI Assistant của **Đặng Quang Doanh**.
+    let greeting = `👋 **Xin chào!** Tôi là AI Assistant của **Đặng Quang Doanh**.`;
+    if (window.currentUser && window.currentUser.displayName) {
+        const firstName = window.currentUser.displayName.split(' ').pop();
+        greeting = `👋 **Xin chào ${firstName}!** Tôi là AI Assistant của **Đặng Quang Doanh**.`;
+    }
+    
+    return `${greeting}
 
 Tôi có thể giúp bạn tìm hiểu về:
 - 💼 **Kinh nghiệm** làm việc và kỹ năng

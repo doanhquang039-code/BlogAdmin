@@ -10,10 +10,25 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="enhancements.css">
     <link rel="stylesheet" href="chatbot.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
 </head>
 <body>
-    <!-- View Counter & Settings -->
+    <!-- View Counter, Login & Settings -->
     <div class="top-controls">
+        <div id="authContainer" class="auth-container">
+            <button id="loginBtn" class="auth-btn">
+                <i class="fab fa-google"></i> <span data-i18n="login">Login</span>
+            </button>
+            <div id="userProfile" class="user-profile" style="display: none;">
+                <img id="userAvatar" src="" alt="User" class="user-avatar" title="Logged in">
+                <button id="logoutBtn" class="logout-btn" title="Logout"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </div>
+        
         <div class="view-counter">
             <i class="fas fa-eye"></i>
             <span id="viewCount">0</span>
@@ -159,8 +174,13 @@
                     </p>
                     
                     <!-- Stats Cards -->
-                    <div class="stats-cards">
-                        <div class="stat-card">
+                    <div class="auth-gated">
+                        <div class="gated-overlay">
+                            <i class="fas fa-lock"></i>
+                            <span data-i18n="loginToView">Vui lòng đăng nhập để xem nội dung</span>
+                        </div>
+                        <div class="stats-cards">
+                            <div class="stat-card">
                             <div class="stat-icon">💼</div>
                             <div class="stat-content">
                                 <span class="stat-number" data-count="9">0</span>
@@ -181,6 +201,7 @@
                                 <span class="stat-label" data-i18n="statYearsCoding">Năm lập trình</span>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <div class="hero-info">
                         <div class="info-item">
@@ -227,7 +248,7 @@
                         <a href="https://zalo.me/0373542892" target="_blank" class="social-icon" title="Zalo">
                             <i class="fas fa-phone"></i>
                         </a>
-                        <a href="javascript:void(0);" id="chatbotTrigger" class="social-icon" title="AI Chatbot">
+                        <a href="javascript:void(0);" id="chatbotTrigger" class="social-icon auth-gated-btn" title="AI Chatbot">
                             <i class="fas fa-robot"></i>
                         </a>
                     </div>
@@ -237,7 +258,7 @@
                         <div class="profile-img-wrapper">
                             <img src="1785331939711_423698007583510178_5649508933815108388_b7568ce1262f4bef2093708b99b7b69b.jpg" alt="Đặng Quang Doanh" class="profile-img">
                             <div class="profile-ring"></div>
-                            <button id="chatbotProfileTrigger" class="profile-chatbot-btn" title="💬 Chat với tôi">
+                            <button id="chatbotProfileTrigger" class="profile-chatbot-btn auth-gated-btn" title="💬 Chat với tôi">
                                 <i class="fas fa-robot"></i>
                                 <span class="chat-pulse"></span>
                             </button>
@@ -367,7 +388,11 @@
             </div>
 
             <!-- Timeline -->
-            <div class="life-timeline">
+            <div class="life-timeline auth-gated">
+                <div class="gated-overlay">
+                    <i class="fas fa-lock"></i>
+                    <span data-i18n="loginToView">Vui lòng đăng nhập để xem nội dung</span>
+                </div>
                 <h3 class="timeline-title" data-i18n="myJourney">🗓️ Hành Trình Của Tôi</h3>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -1536,6 +1561,8 @@
         </div>
     </div>
 
+    <!-- Auth & Database Logic -->
+    <script src="auth.js"></script>
     <script src="chatbot.js?v=1.0"></script>
 </body>
 </html>

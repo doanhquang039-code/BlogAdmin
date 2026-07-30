@@ -249,25 +249,7 @@ if (document.readyState === 'loading') {
     initSettingsPanel();
 }
 
-// ===== View Counter with Multiple Providers =====
-const COUNTER_CONFIG = {
-    // Primary: GoatCounter (Privacy-focused, production-ready)
-    goatCounter: {
-        enabled: false, // Set to true and add your site code
-        siteCode: 'YOUR_SITE_CODE', // Get from goatcounter.com
-    },
-    // Fallback 1: CountAPI
-    countApi: {
-        namespace: 'doanhquang-portfolio',
-        key: 'portfolio-views'
-    },
-    // Fallback 2: Simple PHP/Node backend (if you have one)
-    customBackend: {
-        enabled: false,
-        url: 'https://your-api.com/views'
-    }
-};
-
+// ===== View Counter with Firebase =====
 async function initViewCounter() {
     const viewCountElement = document.getElementById('viewCount');
     if (!viewCountElement) return;
@@ -278,174 +260,22 @@ async function initViewCounter() {
         
         if (!hasVisitedThisSession) {
             // First visit in this session - increment counter
-            await incrementViewCountMultiProvider(viewCountElement);
-            sessionStorage.setItem('hasVisited', 'true');
+            if (window.incrementFirebaseViewCount) {
+                await window.incrementFirebaseViewCount(viewCountElement);
+                sessionStorage.setItem('hasVisited', 'true');
+            }
         } else {
             // Already visited in this session - just fetch current count
-            await fetchViewCountMultiProvider(viewCountElement);
+            if (window.fetchFirebaseViewCount) {
+                await window.fetchFirebaseViewCount(viewCountElement);
+            }
         }
     } catch (error) {
-        console.error('View counter error:', error);
-        // Fallback to localStorage if all APIs fail
-        useFallbackCounter(viewCountElement);
+        console.error('Firebase view counter error:', error);
+        viewCountElement.textContent = "N/A";
     }
 }
 
-async function incrementViewCountMultiProvider(element) {
-    // Try multiple providers in order
-    const providers = [
-        () => incrementCountAPI(element),
-        () => incrementCustomBackend(element),
-    ];
-    
-    for (const provider of providers) {
-        try {
-            await provider();
-            return; // Success, exit
-        } catch (error) {
-            console.warn('Provider failed, trying next...', error);
-        }
-    }
-    
-    // All providers failed
-    throw new Error('All counter providers failed');
-}
-
-async function fetchViewCountMultiProvider(element) {
-    // Try multiple providers in order
-    const providers = [
-        () => fetchCountAPI(element),
-        () => fetchCustomBackend(element),
-    ];
-    
-    for (const provider of providers) {
-        try {
-            await provider();
-            return; // Success, exit
-        } catch (error) {
-            console.warn('Provider failed, trying next...', error);
-        }
-    }
-    
-    // All providers failed
-    throw new Error('All counter providers failed');
-}
-
-// Provider 1: CountAPI.xyz
-async function incrementCountAPI(element) {
-    const { namespace, key } = COUNTER_CONFIG.countApi;
-    const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`, {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache'
-    });
-    
-    if (!response.ok) throw new Error('CountAPI failed');
-    
-    const data = await response.json();
-    if (data.value) {
-        animateViewCount(element, data.value);
-        // Save to localStorage as backup
-        localStorage.setItem('lastKnownCount', data.value);
-    } else {
-        throw new Error('Invalid CountAPI response');
-    }
-}
-
-async function fetchCountAPI(element) {
-    const { namespace, key } = COUNTER_CONFIG.countApi;
-    const response = await fetch(`https://api.countapi.xyz/get/${namespace}/${key}`, {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache'
-    });
-    
-    if (!response.ok) throw new Error('CountAPI failed');
-    
-    const data = await response.json();
-    if (data.value) {
-        animateViewCount(element, data.value);
-        localStorage.setItem('lastKnownCount', data.value);
-    } else {
-        throw new Error('Invalid CountAPI response');
-    }
-}
-
-// Provider 2: Custom Backend (if you have one)
-async function incrementCustomBackend(element) {
-    if (!COUNTER_CONFIG.customBackend.enabled) {
-        throw new Error('Custom backend not enabled');
-    }
-    
-    const response = await fetch(COUNTER_CONFIG.customBackend.url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'increment', page: 'portfolio' })
-    });
-    
-    if (!response.ok) throw new Error('Custom backend failed');
-    
-    const data = await response.json();
-    if (data.count) {
-        animateViewCount(element, data.count);
-        localStorage.setItem('lastKnownCount', data.count);
-    }
-}
-
-async function fetchCustomBackend(element) {
-    if (!COUNTER_CONFIG.customBackend.enabled) {
-        throw new Error('Custom backend not enabled');
-    }
-    
-    const response = await fetch(COUNTER_CONFIG.customBackend.url, {
-        method: 'GET'
-    });
-    
-    if (!response.ok) throw new Error('Custom backend failed');
-    
-    const data = await response.json();
-    if (data.count) {
-        animateViewCount(element, data.count);
-        localStorage.setItem('lastKnownCount', data.count);
-    }
-}
-
-function useFallbackCounter(element) {
-    // Use last known count from API, or fallback to localStorage
-    let viewCount = localStorage.getItem('lastKnownCount');
-    
-    if (!viewCount) {
-        // No API count cached, use localStorage counter
-        viewCount = localStorage.getItem('portfolioViewCount');
-        if (!viewCount) {
-            viewCount = 1;
-        } else {
-            viewCount = parseInt(viewCount) + 1;
-        }
-        localStorage.setItem('portfolioViewCount', viewCount);
-    }
-    
-    animateViewCount(element, parseInt(viewCount));
-    console.info('Using fallback counter:', viewCount);
-}
-
-function animateViewCount(element, targetCount) {
-    let currentCount = parseInt(element.textContent) || 0;
-    const increment = Math.ceil(targetCount / 30);
-    const duration = 1000; // 1 second
-    const steps = 30;
-    const stepDuration = duration / steps;
-    
-    const timer = setInterval(() => {
-        currentCount += increment;
-        if (currentCount >= targetCount) {
-            element.textContent = targetCount.toLocaleString(); // Format with commas
-            clearInterval(timer);
-        } else {
-            element.textContent = currentCount.toLocaleString();
-        }
-    }, stepDuration);
-}
 
 // Initialize view counter on page load
 window.addEventListener('load', () => {

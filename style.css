@@ -1751,20 +1751,22 @@ body.light-mode .hamburger span {
     .settings-panel {
         width: 100%;
         top: auto;
-        bottom: -100%;
+        bottom: 0;
         right: 0;
         height: 85vh;
         border-radius: 20px 20px 0 0;
         border-left: none;
         border-top: 2px solid rgba(99, 102, 241, 0.3);
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
-        transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1005; /* Ensure above overlay */
+        visibility: hidden;
     }
     
     .settings-panel.active {
-        bottom: 0;
-        right: 0;
+        transform: translateY(0);
+        visibility: visible;
     }
 
     .settings-content {
@@ -1820,6 +1822,7 @@ body.light-mode .hamburger span {
     /* Hero Section */
     .hero {
         padding: 7.5rem 0 3rem;
+        min-height: auto;
     }
     
     .hero-content {
@@ -2030,6 +2033,7 @@ body.light-mode .hamburger span {
 @media (max-width: 480px) {
     .hero {
         padding: 7rem 0 2rem;
+        min-height: auto;
     }
 
     .hero-title {
@@ -2167,4 +2171,129 @@ body.light-mode .hamburger span {
     .chatbot-container .chatbot-window {
         padding-bottom: env(safe-area-inset-bottom);
     }
+}
+
+/* Auth UI */
+.auth-container {
+    display: flex;
+    align-items: center;
+}
+
+.auth-btn {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.auth-btn i {
+    color: #ea4335;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    object-fit: cover;
+}
+
+.logout-btn {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* Gated Content */
+.auth-gated {
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-gated::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.6);
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.gated-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    background: var(--card-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    min-width: 280px;
+}
+
+.gated-overlay i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.gated-overlay span {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.auth-gated.unlocked::after,
+.auth-gated.unlocked .gated-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth-gated-btn {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.auth-gated-btn.unlocked {
+    opacity: 1;
+    pointer-events: auto;
 }
