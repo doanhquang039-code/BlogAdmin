@@ -2,8 +2,9 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Đặng Quang Doanh - Portfolio</title>
+    <meta name="description" content="Portfolio cá nhân của Đặng Quang Doanh - Full-Stack Developer, AI Enthusiast">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -30,14 +31,14 @@
     <!-- Settings Panel -->
     <div id="settingsPanel" class="settings-panel">
         <div class="settings-header">
-            <h3>⚙️ Customize</h3>
+            <h3 data-i18n="settingsTitle">⚙️ Tùy chỉnh</h3>
             <button id="closeSettings" class="close-settings">&times;</button>
         </div>
         
         <div class="settings-content">
             <!-- Brightness -->
             <div class="setting-item">
-                <label for="brightness">Brightness</label>
+                <label for="brightness" data-i18n="settingBrightness">Độ sáng</label>
                 <div class="slider-group">
                     <i class="fas fa-sun"></i>
                     <input type="range" id="brightness" min="50" max="150" value="100" class="slider">
@@ -47,7 +48,7 @@
 
             <!-- Contrast -->
             <div class="setting-item">
-                <label for="contrast">Contrast</label>
+                <label for="contrast" data-i18n="settingContrast">Tương phản</label>
                 <div class="slider-group">
                     <i class="fas fa-adjust"></i>
                     <input type="range" id="contrast" min="80" max="150" value="100" class="slider">
@@ -57,7 +58,7 @@
 
             <!-- Saturation -->
             <div class="setting-item">
-                <label for="saturation">Saturation</label>
+                <label for="saturation" data-i18n="settingSaturation">Bão hòa</label>
                 <div class="slider-group">
                     <i class="fas fa-palette"></i>
                     <input type="range" id="saturation" min="0" max="150" value="100" class="slider">
@@ -67,7 +68,7 @@
 
             <!-- Theme Colors -->
             <div class="setting-item">
-                <label>Theme Color</label>
+                <label data-i18n="settingThemeColor">Màu chủ đề</label>
                 <div class="color-options">
                     <button class="color-btn" data-color="purple" title="Purple" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></button>
                     <button class="color-btn" data-color="blue" title="Blue" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);"></button>
@@ -79,7 +80,7 @@
 
             <!-- Background -->
             <div class="setting-item">
-                <label>Background</label>
+                <label data-i18n="settingBackground">Nền</label>
                 <div class="bg-options">
                     <button class="bg-btn" data-bg="dark" title="Dark">🌙</button>
                     <button class="bg-btn" data-bg="light" title="Light">☀️</button>
@@ -89,17 +90,17 @@
 
             <!-- Music Toggle -->
             <div class="setting-item">
-                <label for="musicToggle">Background Music</label>
+                <label for="musicToggle" data-i18n="settingMusic">Nhạc nền</label>
                 <div class="music-toggle">
-                    <input type="checkbox" id="musicToggle" checked>
-                    <span>ON</span>
+                    <input type="checkbox" id="musicToggle">
+                    <span>OFF</span>
                     <i class="fas fa-music"></i>
                 </div>
             </div>
 
             <!-- Reset -->
             <button id="resetSettings" class="reset-btn">
-                <i class="fas fa-redo"></i> Reset All
+                <i class="fas fa-redo"></i> <span data-i18n="settingResetAll">Đặt lại tất cả</span>
             </button>
         </div>
     </div>
@@ -125,12 +126,12 @@
                 <span data-i18n="devPortfolio">DevPortfolio</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link" data-i18n="home">Home</a></li>
-                <li><a href="#about" class="nav-link" data-i18n="about">About</a></li>
-                <li><a href="#tech" class="nav-link" data-i18n="techStack">Tech Stack</a></li>
-                <li><a href="#ai-research" class="nav-link">AI Research</a></li>
-                <li><a href="#projects" class="nav-link" data-i18n="projects">Projects</a></li>
-                <li><a href="#contact" class="nav-link" data-i18n="contact">Contact</a></li>
+                <li><a href="#home" class="nav-link" data-i18n="home">Trang chủ</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="about">Giới thiệu</a></li>
+                <li><a href="#tech" class="nav-link" data-i18n="techStack">Công nghệ</a></li>
+                <li><a href="#ai-research" class="nav-link" data-i18n="aiResearch">AI Research</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="projects">Dự án</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="contact">Liên hệ</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -154,8 +155,7 @@
                         <span class="role-animator"></span>
                     </h2>
                     <p class="hero-description" data-i18n="heroDescription">
-                        🚀 <span data-i18n="passionate">Passionate</span> <span data-i18n="about">about</span> <span data-i18n="buildingInnovative">building innovative solutions</span> | 
-                        💻 Spring Boot • Node.js • Flutter • Python AI
+                        🚀 Đam mê xây dựng những giải pháp sáng tạo | 💻 Spring Boot • Node.js • Flutter • Python AI
                     </p>
                     
                     <!-- Stats Cards -->
@@ -163,22 +163,22 @@
                         <div class="stat-card">
                             <div class="stat-icon">💼</div>
                             <div class="stat-content">
-                                <span class="stat-number" data-count="9">8</span>
-                                <span class="stat-label"> Projects</span>
+                                <span class="stat-number" data-count="9">0</span>
+                                <span class="stat-label" data-i18n="statProjects">Dự án</span>
                             </div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon">🏆</div>
                             <div class="stat-content">
-                                <span class="stat-number" data-count="5">6</span>
-                                <span class="stat-label">  Achievements</span>
+                                <span class="stat-number" data-count="5">0</span>
+                                <span class="stat-label" data-i18n="statAchievements">Thành tựu</span>
                             </div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon">⭐</div>
                             <div class="stat-content">
-                                <span class="stat-number" data-count="2">1.5</span>
-                                <span class="stat-label"> Years Coding</span>
+                                <span class="stat-number" data-count="2">0</span>
+                                <span class="stat-label" data-i18n="statYearsCoding">Năm lập trình</span>
                             </div>
                         </div>
                     </div>
@@ -237,7 +237,6 @@
                         <div class="profile-img-wrapper">
                             <img src="1785331939711_423698007583510178_5649508933815108388_b7568ce1262f4bef2093708b99b7b69b.jpg" alt="Đặng Quang Doanh" class="profile-img">
                             <div class="profile-ring"></div>
-                            <!-- Chatbot Icon next to profile -->
                             <button id="chatbotProfileTrigger" class="profile-chatbot-btn" title="💬 Chat với tôi">
                                 <i class="fas fa-robot"></i>
                                 <span class="chat-pulse"></span>
@@ -260,84 +259,84 @@
     <section id="about" class="about-me">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">👨‍💻 About Me</span>
-                <h2 class="section-title">Get To Know Me</h2>
-                <p class="section-description">Hành trình từ người đam mê công nghệ đến Developer</p>
+                <span class="section-tag" data-i18n="aboutTag">👨‍💻 Giới thiệu</span>
+                <h2 class="section-title" data-i18n="aboutTitle">Tìm Hiểu Về Tôi</h2>
+                <p class="section-description" data-i18n="aboutDesc">Hành trình từ người đam mê công nghệ đến Developer</p>
             </div>
 
             <div class="about-grid">
                 <div class="about-story">
-                    <h3>📖 My Story</h3>
-                    <p>Xin chào! Tôi là <strong>Đặng Quang Doanh</strong>, sinh viên năm 2 ngành Công nghệ Thông tin, đến từ Thái Bình. Từ nhỏ, tôi đã say mê với công nghệ và cách nó thay đổi cuộc sống con người.</p>
+                    <h3 data-i18n="myStory">📖 Câu Chuyện Của Tôi</h3>
+                    <p data-i18n-html="aboutStory1">Xin chào! Tôi là <strong>Đặng Quang Doanh</strong>, sinh viên năm 2 ngành Công nghệ Thông tin, đến từ Thái Bình. Từ nhỏ, tôi đã say mê với công nghệ và cách nó thay đổi cuộc sống con người.</p>
                     
-                    <p>Hành trình lập trình của tôi bắt đầu từ năm 2022, khi lần đầu tiên viết dòng code "Hello World" bằng Java. Từ đó, tôi không ngừng học hỏi và phát triển, từ backend với Spring Boot, Node.js, đến frontend với React, và cả mobile development với Flutter.</p>
+                    <p data-i18n="aboutStory2">Hành trình lập trình của tôi bắt đầu từ năm 2022, khi lần đầu tiên viết dòng code "Hello World" bằng Java. Từ đó, tôi không ngừng học hỏi và phát triển, từ backend với Spring Boot, Node.js, đến frontend với React, và cả mobile development với Flutter.</p>
                     
-                    <p>Năm 2024 là năm đặc biệt với nhiều thành tựu: Đạt học bổng toàn phần, giành giải thưởng GameKren 16M VND, và đạt chứng chỉ Google Cloud Certified. Những thành công này không chỉ là động lực mà còn là minh chứng cho sự cố gắng không ngừng nghỉ.</p>
+                    <p data-i18n="aboutStory3">Năm 2024 là năm đặc biệt với nhiều thành tựu: Đạt học bổng toàn phần, giành giải thưởng GameKren 16M VND, và đạt chứng chỉ Google Cloud Certified. Những thành công này không chỉ là động lực mà còn là minh chứng cho sự cố gắng không ngừng nghỉ.</p>
                     
-                    <h4>🎯 Philosophy</h4>
+                    <h4 data-i18n="philosophy">🎯 Triết lý</h4>
                     <blockquote>
-                        "Code is not just about solving problems, it's about creating solutions that make life better."
+                        <span data-i18n="philosophyQuote">"Code không chỉ là giải quyết vấn đề, mà là tạo ra những giải pháp giúp cuộc sống tốt đẹp hơn."</span>
                     </blockquote>
                 </div>
 
                 <div class="about-details">
-                    <h3>📋 Quick Facts</h3>
+                    <h3 data-i18n="quickFacts">📋 Thông Tin Nhanh</h3>
                     <div class="fact-list">
                         <div class="fact-item">
                             <span class="fact-icon">🎂</span>
                             <div>
-                                <strong>Ngày sinh:</strong>
-                                <span>29/12/2006 (18 tuổi)</span>
+                                <strong data-i18n="factBirthday">Ngày sinh:</strong>
+                                <span data-i18n="factBirthdayVal">29/12/2006 (18 tuổi)</span>
                             </div>
                         </div>
                         <div class="fact-item">
                             <span class="fact-icon">🏠</span>
                             <div>
-                                <strong>Quê quán:</strong>
-                                <span>Thái Bình, Việt Nam</span>
+                                <strong data-i18n="factHometown">Quê quán:</strong>
+                                <span data-i18n="factHometownVal">Thái Bình, Việt Nam</span>
                             </div>
                         </div>
                         <div class="fact-item">
                             <span class="fact-icon">🎓</span>
                             <div>
-                                <strong>Trình độ:</strong>
-                                <span>Sinh viên CNTT - Năm 2</span>
+                                <strong data-i18n="factEducation">Trình độ:</strong>
+                                <span data-i18n="factEducationVal">Sinh viên CNTT - Năm 2</span>
                             </div>
                         </div>
                         <div class="fact-item">
                             <span class="fact-icon">💼</span>
                             <div>
-                                <strong>Vai trò:</strong>
-                                <span>Full-Stack Developer</span>
+                                <strong data-i18n="factRole">Vai trò:</strong>
+                                <span data-i18n="factRoleVal">Full-Stack Developer</span>
                             </div>
                         </div>
                         <div class="fact-item">
                             <span class="fact-icon">🌟</span>
                             <div>
-                                <strong>Chuyên môn:</strong>
-                                <span>Backend, AI, Cloud</span>
+                                <strong data-i18n="factExpertise">Chuyên môn:</strong>
+                                <span data-i18n="factExpertiseVal">Backend, AI, Cloud</span>
                             </div>
                         </div>
                         <div class="fact-item">
                             <span class="fact-icon">🗣️</span>
                             <div>
-                                <strong>Ngôn ngữ:</strong>
-                                <span>Tiếng Việt, English, 中文</span>
+                                <strong data-i18n="factLanguages">Ngôn ngữ:</strong>
+                                <span data-i18n="factLanguagesVal">Tiếng Việt, English, 中文</span>
                             </div>
                         </div>
                     </div>
 
-                    <h3>💪 Strengths</h3>
+                    <h3 data-i18n="strengths">💪 Điểm Mạnh</h3>
                     <div class="strengths-list">
-                        <div class="strength-tag">Problem Solving</div>
-                        <div class="strength-tag">Quick Learner</div>
-                        <div class="strength-tag">Team Player</div>
-                        <div class="strength-tag">Self-Motivated</div>
-                        <div class="strength-tag">Detail-Oriented</div>
-                        <div class="strength-tag">Creative Thinker</div>
+                        <div class="strength-tag" data-i18n="strengthProblem">Giải quyết vấn đề</div>
+                        <div class="strength-tag" data-i18n="strengthLearner">Học nhanh</div>
+                        <div class="strength-tag" data-i18n="strengthTeam">Làm việc nhóm</div>
+                        <div class="strength-tag" data-i18n="strengthMotivated">Tự thúc đẩy</div>
+                        <div class="strength-tag" data-i18n="strengthDetail">Chi tiết</div>
+                        <div class="strength-tag" data-i18n="strengthCreative">Tư duy sáng tạo</div>
                     </div>
 
-                    <h3>🎯 Current Focus</h3>
+                    <h3 data-i18n="currentFocus">🎯 Đang Tập Trung</h3>
                     <div class="focus-list">
                         <div class="focus-item">
                             <div class="focus-bar">
@@ -369,48 +368,48 @@
 
             <!-- Timeline -->
             <div class="life-timeline">
-                <h3 class="timeline-title">🗓️ My Journey</h3>
+                <h3 class="timeline-title" data-i18n="myJourney">🗓️ Hành Trình Của Tôi</h3>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-date">2006</div>
                         <div class="timeline-content">
-                            <h4>🎂 Born in Thái Bình</h4>
-                            <p>Chào đời tại Thái Bình, Việt Nam</p>
+                            <h4 data-i18n="timeline2006Title">🎂 Chào đời tại Thái Bình</h4>
+                            <p data-i18n="timeline2006Desc">Chào đời tại Thái Bình, Việt Nam</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2022</div>
                         <div class="timeline-content">
-                            <h4>💻 Started Coding Journey</h4>
-                            <p>Bắt đầu học lập trình với Java, HTML, CSS</p>
+                            <h4 data-i18n="timeline2022Title">💻 Bắt đầu hành trình lập trình</h4>
+                            <p data-i18n="timeline2022Desc">Bắt đầu học lập trình với Java, HTML, CSS</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2023</div>
                         <div class="timeline-content">
-                            <h4>🎓 University Life Begins</h4>
-                            <p>Nhập học ngành Công nghệ Thông tin</p>
+                            <h4 data-i18n="timeline2023Title">🎓 Bắt đầu đại học</h4>
+                            <p data-i18n="timeline2023Desc">Nhập học ngành Công nghệ Thông tin</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2024</div>
                         <div class="timeline-content">
-                            <h4>🏆 Major Achievements</h4>
-                            <p>Học bổng toàn phần, GameKren Prize 16M, Google Cloud Certified</p>
+                            <h4 data-i18n="timeline2024Title">🏆 Những thành tựu lớn</h4>
+                            <p data-i18n="timeline2024Desc">Học bổng toàn phần, GameKren Prize 16M, Google Cloud Certified</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2025</div>
                         <div class="timeline-content">
-                            <h4>🚀 Advanced Skills</h4>
-                            <p>Chuyên sâu AI, Microservices, Cloud Architecture</p>
+                            <h4 data-i18n="timeline2025Title">🚀 Nâng cao kỹ năng</h4>
+                            <p data-i18n="timeline2025Desc">Chuyên sâu AI, Microservices, Cloud Architecture</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2026</div>
                         <div class="timeline-content">
-                            <h4>🎯 Current Focus</h4>
-                            <p>Building scalable systems, AI integration, Open source contribution</p>
+                            <h4 data-i18n="timeline2026Title">🎯 Hiện tại</h4>
+                            <p data-i18n="timeline2026Desc">Xây dựng hệ thống scalable, tích hợp AI, đóng góp mã nguồn mở</p>
                         </div>
                     </div>
                 </div>
@@ -423,17 +422,17 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="techStackTag">🛠️ Công nghệ</span>
-                <h2 class="section-title" data-i18n="techStackTitle">Tech Stack</h2>
+                <h2 class="section-title" data-i18n="techStackTitle">Công Nghệ</h2>
                 <p class="section-description" data-i18n="techStackDesc">Các công nghệ và công cụ mà tôi thành thạo và sử dụng hàng ngày</p>
             </div>
 
             <!-- Skills Progress Bars -->
             <div class="skills-overview">
-                <h3>💪 Technical Proficiency</h3>
+                <h3 data-i18n="techProficiency">💪 Trình Độ Chuyên Môn</h3>
                 <div class="skills-grid">
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Backend Development</span>
+                            <span class="skill-name" data-i18n="skillBackend">Phát triển Backend</span>
                             <span class="skill-percent">90%</span>
                         </div>
                         <div class="skill-bar">
@@ -448,7 +447,7 @@
 
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Frontend Development</span>
+                            <span class="skill-name" data-i18n="skillFrontend">Phát triển Frontend</span>
                             <span class="skill-percent">80%</span>
                         </div>
                         <div class="skill-bar">
@@ -463,7 +462,7 @@
 
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Mobile Development</span>
+                            <span class="skill-name" data-i18n="skillMobile">Phát triển Mobile</span>
                             <span class="skill-percent">75%</span>
                         </div>
                         <div class="skill-bar">
@@ -477,7 +476,7 @@
 
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">AI & Machine Learning</span>
+                            <span class="skill-name" data-i18n="skillAI">AI & Machine Learning</span>
                             <span class="skill-percent">70%</span>
                         </div>
                         <div class="skill-bar">
@@ -492,7 +491,7 @@
 
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Database & Storage</span>
+                            <span class="skill-name" data-i18n="skillDB">Cơ sở dữ liệu & Lưu trữ</span>
                             <span class="skill-percent">85%</span>
                         </div>
                         <div class="skill-bar">
@@ -507,7 +506,7 @@
 
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">DevOps & Cloud</span>
+                            <span class="skill-name" data-i18n="skillDevOps">DevOps & Cloud</span>
                             <span class="skill-percent">75%</span>
                         </div>
                         <div class="skill-bar">
@@ -621,17 +620,17 @@
     <section id="ai-research" class="ai-research">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">🤖 AI Research</span>
-                <h2 class="section-title">Nghiên Cứu & Ứng Dụng AI</h2>
-                <p class="section-description">Khám phá các dự án AI, nghiên cứu về LLMs, và ứng dụng thực tế của Machine Learning</p>
+                <span class="section-tag" data-i18n="aiResearchTag">🤖 Nghiên cứu AI</span>
+                <h2 class="section-title" data-i18n="aiResearchTitle">Nghiên Cứu & Ứng Dụng AI</h2>
+                <p class="section-description" data-i18n="aiResearchDesc">Khám phá các dự án AI, nghiên cứu về LLMs, và ứng dụng thực tế của Machine Learning</p>
             </div>
 
             <!-- AI Focus Areas -->
             <div class="ai-focus-grid">
                 <div class="ai-focus-card">
                     <div class="ai-focus-icon">🧠</div>
-                    <h3>Large Language Models</h3>
-                    <p>Nghiên cứu và ứng dụng GPT-4, Claude, Gemini trong các hệ thống thực tế</p>
+                    <h3 data-i18n="aiFocusLLM">Large Language Models</h3>
+                    <p data-i18n="aiFocusLLMDesc">Nghiên cứu và ứng dụng GPT-4, Claude, Gemini trong các hệ thống thực tế</p>
                     <div class="ai-tech-tags">
                         <span>OpenAI API</span>
                         <span>LangChain</span>
@@ -641,8 +640,8 @@
 
                 <div class="ai-focus-card">
                     <div class="ai-focus-icon">💬</div>
-                    <h3>Conversational AI</h3>
-                    <p>Xây dựng chatbot thông minh với context awareness và multi-turn conversation</p>
+                    <h3 data-i18n="aiFocusChat">Conversational AI</h3>
+                    <p data-i18n="aiFocusChatDesc">Xây dựng chatbot thông minh với context awareness và multi-turn conversation</p>
                     <div class="ai-tech-tags">
                         <span>RAG</span>
                         <span>Vector DB</span>
@@ -652,8 +651,8 @@
 
                 <div class="ai-focus-card">
                     <div class="ai-focus-icon">🔍</div>
-                    <h3>AI Agents & Automation</h3>
-                    <p>Phát triển AI agents tự động hóa workflow và decision making</p>
+                    <h3 data-i18n="aiFocusAgents">AI Agents & Automation</h3>
+                    <p data-i18n="aiFocusAgentsDesc">Phát triển AI agents tự động hóa workflow và decision making</p>
                     <div class="ai-tech-tags">
                         <span>AutoGPT</span>
                         <span>Function Calling</span>
@@ -663,8 +662,8 @@
 
                 <div class="ai-focus-card">
                     <div class="ai-focus-icon">📊</div>
-                    <h3>Data Analysis & ML</h3>
-                    <p>Phân tích dữ liệu và xây dựng mô hình Machine Learning cho business insights</p>
+                    <h3 data-i18n="aiFocusData">Data Analysis & ML</h3>
+                    <p data-i18n="aiFocusDataDesc">Phân tích dữ liệu và xây dựng mô hình Machine Learning cho business insights</p>
                     <div class="ai-tech-tags">
                         <span>Python</span>
                         <span>Pandas</span>
@@ -675,39 +674,38 @@
 
             <!-- AI Projects Showcase -->
             <div class="ai-projects-showcase">
-                <h3 class="showcase-title">🚀 AI Projects Highlights</h3>
+                <h3 class="showcase-title" data-i18n="aiProjectsHighlights">🚀 Dự Án AI Nổi Bật</h3>
                 
                 <div class="ai-project-cards">
-                    <!-- Project 1: Intelligent Expense Tracker -->
                     <div class="ai-project-card featured">
-                        <div class="project-badge">Featured</div>
+                        <div class="project-badge" data-i18n="aiFeatured">Nổi bật</div>
                         <div class="ai-project-header">
                             <div class="ai-project-icon">💰</div>
                             <div>
-                                <h4>Intelligent Expense Tracker</h4>
-                                <p class="project-subtitle">AI-Powered Financial Assistant</p>
+                                <h4 data-i18n="aiExpenseTitle">Intelligent Expense Tracker</h4>
+                                <p class="project-subtitle" data-i18n="aiExpenseSubtitle">Trợ lý tài chính AI</p>
                             </div>
                         </div>
                         <div class="ai-project-content">
-                            <p><strong>Problem:</strong> Quản lý chi tiêu thủ công tốn thời gian và dễ sai sót</p>
-                            <p><strong>Solution:</strong> Tích hợp AI để tự động phân loại giao dịch, dự đoán chi tiêu, và đưa ra insights tài chính thông minh</p>
+                            <p data-i18n-html="aiExpenseProblem"><strong>Vấn đề:</strong> Quản lý chi tiêu thủ công tốn thời gian và dễ sai sót</p>
+                            <p data-i18n-html="aiExpenseSolution"><strong>Giải pháp:</strong> Tích hợp AI để tự động phân loại giao dịch, dự đoán chi tiêu, và đưa ra insights tài chính thông minh</p>
                             
                             <div class="ai-features">
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Auto-categorization với NLP</span>
+                                    <span data-i18n="aiExpenseF1">Tự động phân loại với NLP</span>
                                 </div>
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Spending prediction với Time Series</span>
+                                    <span data-i18n="aiExpenseF2">Dự đoán chi tiêu với Time Series</span>
                                 </div>
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Personalized financial advice từ GPT-4</span>
+                                    <span data-i18n="aiExpenseF3">Lời khuyên tài chính cá nhân từ GPT-4</span>
                                 </div>
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Anomaly detection cho unusual transactions</span>
+                                    <span data-i18n="aiExpenseF4">Phát hiện bất thường cho giao dịch lạ</span>
                                 </div>
                             </div>
 
@@ -721,49 +719,48 @@
                             <div class="ai-project-metrics">
                                 <div class="metric">
                                     <span class="metric-value">95%</span>
-                                    <span class="metric-label">Accuracy</span>
+                                    <span class="metric-label" data-i18n="aiMetricAccuracy">Độ chính xác</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-value">40%</span>
-                                    <span class="metric-label">Time Saved</span>
+                                    <span class="metric-label" data-i18n="aiMetricTimeSaved">Tiết kiệm thời gian</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-value">1.2s</span>
-                                    <span class="metric-label">Response Time</span>
+                                    <span class="metric-label" data-i18n="aiMetricResponse">Thời gian phản hồi</span>
                                 </div>
                             </div>
                         </div>
                         <div class="ai-project-footer">
                             <a href="https://github.com/doanhquang039-code" target="_blank" class="project-link-btn">
-                                <i class="fab fa-github"></i> View on GitHub
+                                <i class="fab fa-github"></i> <span data-i18n="viewOnGithub">Xem trên GitHub</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Project 2: HR Chatbot -->
                     <div class="ai-project-card">
                         <div class="ai-project-header">
                             <div class="ai-project-icon">🤖</div>
                             <div>
-                                <h4>HR Management Chatbot</h4>
-                                <p class="project-subtitle">Conversational AI for HR Tasks</p>
+                                <h4 data-i18n="aiHRTitle">HR Management Chatbot</h4>
+                                <p class="project-subtitle" data-i18n="aiHRSubtitle">AI cho tác vụ nhân sự</p>
                             </div>
                         </div>
                         <div class="ai-project-content">
-                            <p>Chatbot AI hỗ trợ nhân viên với các câu hỏi về HR policies, leave requests, và company information</p>
+                            <p data-i18n="aiHRDesc">Chatbot AI hỗ trợ nhân viên với các câu hỏi về HR policies, leave requests, và company information</p>
                             
                             <div class="ai-features">
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>RAG với company knowledge base</span>
+                                    <span data-i18n="aiHRF1">RAG với company knowledge base</span>
                                 </div>
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Multi-turn conversation context</span>
+                                    <span data-i18n="aiHRF2">Multi-turn conversation context</span>
                                 </div>
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Intent classification & slot filling</span>
+                                    <span data-i18n="aiHRF3">Intent classification & slot filling</span>
                                 </div>
                             </div>
 
@@ -775,30 +772,29 @@
                         </div>
                     </div>
 
-                    <!-- Project 3: Code Assistant -->
                     <div class="ai-project-card">
                         <div class="ai-project-header">
                             <div class="ai-project-icon">💻</div>
                             <div>
-                                <h4>AI Code Review Assistant</h4>
-                                <p class="project-subtitle">Automated Code Analysis</p>
+                                <h4 data-i18n="aiCodeTitle">AI Code Review Assistant</h4>
+                                <p class="project-subtitle" data-i18n="aiCodeSubtitle">Phân tích code tự động</p>
                             </div>
                         </div>
                         <div class="ai-project-content">
-                            <p>AI assistant tự động review code, detect bugs, suggest improvements và generate unit tests</p>
+                            <p data-i18n="aiCodeDesc">AI assistant tự động review code, detect bugs, suggest improvements và generate unit tests</p>
                             
                             <div class="ai-features">
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Code smell detection</span>
+                                    <span data-i18n="aiCodeF1">Phát hiện code smell</span>
                                 </div>
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Security vulnerability scan</span>
+                                    <span data-i18n="aiCodeF2">Quét lỗ hổng bảo mật</span>
                                 </div>
                                 <div class="ai-feature-item">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Auto test generation</span>
+                                    <span data-i18n="aiCodeF3">Tự động tạo unit tests</span>
                                 </div>
                             </div>
 
@@ -814,77 +810,77 @@
 
             <!-- Research Topics -->
             <div class="research-topics">
-                <h3 class="showcase-title">📚 Research Interests & Learning</h3>
+                <h3 class="showcase-title" data-i18n="researchInterests">📚 Hướng Nghiên Cứu & Học Tập</h3>
                 
                 <div class="research-grid">
                     <div class="research-card">
                         <div class="research-header">
                             <span class="research-icon">🔬</span>
-                            <h4>Prompt Engineering</h4>
+                            <h4 data-i18n="researchPrompt">Prompt Engineering</h4>
                         </div>
                         <ul class="research-list">
                             <li>Few-shot & Zero-shot learning</li>
                             <li>Chain-of-Thought prompting</li>
                             <li>ReAct & Self-consistency</li>
-                            <li>Prompt optimization techniques</li>
+                            <li>Kỹ thuật tối ưu prompt</li>
                         </ul>
-                        <div class="research-status">Actively Researching</div>
+                        <div class="research-status" data-i18n="activelyResearching">Đang nghiên cứu</div>
                     </div>
 
                     <div class="research-card">
                         <div class="research-header">
                             <span class="research-icon">🎯</span>
-                            <h4>Retrieval Augmented Generation</h4>
+                            <h4 data-i18n="researchRAG">Retrieval Augmented Generation</h4>
                         </div>
                         <ul class="research-list">
                             <li>Vector embeddings & similarity search</li>
-                            <li>Hybrid search strategies</li>
-                            <li>Context window optimization</li>
-                            <li>Re-ranking algorithms</li>
+                            <li>Chiến lược tìm kiếm hybrid</li>
+                            <li>Tối ưu hóa context window</li>
+                            <li>Thuật toán re-ranking</li>
                         </ul>
-                        <div class="research-status">Actively Researching</div>
+                        <div class="research-status" data-i18n="activelyResearching">Đang nghiên cứu</div>
                     </div>
 
                     <div class="research-card">
                         <div class="research-header">
                             <span class="research-icon">⚡</span>
-                            <h4>LLM Fine-tuning</h4>
+                            <h4 data-i18n="researchFineTuning">LLM Fine-tuning</h4>
                         </div>
                         <ul class="research-list">
-                            <li>LoRA & QLoRA techniques</li>
+                            <li>Kỹ thuật LoRA & QLoRA</li>
                             <li>Domain-specific adaptation</li>
                             <li>Instruction tuning</li>
-                            <li>Model evaluation metrics</li>
+                            <li>Đánh giá chất lượng mô hình</li>
                         </ul>
-                        <div class="research-status">Learning</div>
+                        <div class="research-status" data-i18n="learning">Đang học</div>
                     </div>
 
                     <div class="research-card">
                         <div class="research-header">
                             <span class="research-icon">🛡️</span>
-                            <h4>AI Safety & Ethics</h4>
+                            <h4 data-i18n="researchSafety">AI Safety & Ethics</h4>
                         </div>
                         <ul class="research-list">
-                            <li>Prompt injection prevention</li>
-                            <li>Bias detection & mitigation</li>
-                            <li>Content moderation</li>
-                            <li>Responsible AI development</li>
+                            <li>Phòng chống prompt injection</li>
+                            <li>Phát hiện & giảm thiểu bias</li>
+                            <li>Kiểm duyệt nội dung</li>
+                            <li>Phát triển AI có trách nhiệm</li>
                         </ul>
-                        <div class="research-status">Learning</div>
+                        <div class="research-status" data-i18n="learning">Đang học</div>
                     </div>
                 </div>
             </div>
 
             <!-- AI Learning Path -->
             <div class="ai-learning-path">
-                <h3 class="showcase-title">🎓 AI Learning Journey</h3>
+                <h3 class="showcase-title" data-i18n="aiLearningJourney">🎓 Hành Trình Học AI</h3>
                 
                 <div class="learning-timeline">
                     <div class="learning-item completed">
                         <div class="learning-marker"></div>
                         <div class="learning-content">
-                            <h4>Foundations of AI & ML</h4>
-                            <p>Học Python, NumPy, Pandas, cơ bản về Machine Learning algorithms</p>
+                            <h4 data-i18n="aiLearn1Title">Nền tảng AI & ML</h4>
+                            <p data-i18n="aiLearn1Desc">Học Python, NumPy, Pandas, cơ bản về Machine Learning algorithms</p>
                             <span class="learning-date">2023</span>
                         </div>
                     </div>
@@ -892,8 +888,8 @@
                     <div class="learning-item completed">
                         <div class="learning-marker"></div>
                         <div class="learning-content">
-                            <h4>Deep Learning & Neural Networks</h4>
-                            <p>Nghiên cứu về neural networks, backpropagation, và optimization techniques</p>
+                            <h4 data-i18n="aiLearn2Title">Deep Learning & Neural Networks</h4>
+                            <p data-i18n="aiLearn2Desc">Nghiên cứu về neural networks, backpropagation, và optimization techniques</p>
                             <span class="learning-date">2024 Q1</span>
                         </div>
                     </div>
@@ -901,8 +897,8 @@
                     <div class="learning-item completed">
                         <div class="learning-marker"></div>
                         <div class="learning-content">
-                            <h4>LLMs & API Integration</h4>
-                            <p>Tích hợp OpenAI, Gemini, Claude APIs vào ứng dụng thực tế</p>
+                            <h4 data-i18n="aiLearn3Title">LLMs & Tích hợp API</h4>
+                            <p data-i18n="aiLearn3Desc">Tích hợp OpenAI, Gemini, Claude APIs vào ứng dụng thực tế</p>
                             <span class="learning-date">2024 Q2</span>
                         </div>
                     </div>
@@ -910,18 +906,18 @@
                     <div class="learning-item in-progress">
                         <div class="learning-marker"></div>
                         <div class="learning-content">
-                            <h4>Advanced RAG & Vector Databases</h4>
-                            <p>Nghiên cứu sâu về RAG patterns, embeddings, và vector search optimization</p>
-                            <span class="learning-date">2026 (Current)</span>
+                            <h4 data-i18n="aiLearn4Title">Advanced RAG & Vector Databases</h4>
+                            <p data-i18n="aiLearn4Desc">Nghiên cứu sâu về RAG patterns, embeddings, và vector search optimization</p>
+                            <span class="learning-date" data-i18n="aiLearnCurrent">2026 (Hiện tại)</span>
                         </div>
                     </div>
 
                     <div class="learning-item planned">
                         <div class="learning-marker"></div>
                         <div class="learning-content">
-                            <h4>LLM Fine-tuning & Deployment</h4>
-                            <p>Kế hoạch học fine-tuning models và deploying LLMs at scale</p>
-                            <span class="learning-date">2026 Q4 (Planned)</span>
+                            <h4 data-i18n="aiLearn5Title">LLM Fine-tuning & Deployment</h4>
+                            <p data-i18n="aiLearn5Desc">Kế hoạch học fine-tuning models và deploying LLMs at scale</p>
+                            <span class="learning-date" data-i18n="aiLearnPlanned">2026 Q4 (Kế hoạch)</span>
                         </div>
                     </div>
                 </div>
@@ -934,210 +930,195 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="projectsTag">🚀 Dự án</span>
-                <h2 class="section-title" data-i18n="myProjects">My Projects</h2>
+                <h2 class="section-title" data-i18n="myProjects">Dự Án Của Tôi</h2>
                 <p class="section-description" data-i18n="projectsDesc">Các dự án và công việc mà tôi đã thực hiện</p>
                 <div style="height: 2rem;"></div>
             </div>
             
+            <!-- Mobile Project Cards -->
+            <div class="projects-mobile-cards">
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>App Flutter</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projAppFlutter">Ứng dụng theo dõi chi tiêu với NestJS backend & Flutter mobile</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-typescript">TypeScript</span>
+                        <span class="badge badge-flutter">Flutter</span>
+                        <span class="badge badge-sqlserver">SQL Server</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-brain"></i>
+                        <span>Learn AI</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projLearnAI">Dự án học AI sử dụng Python với OpenAI & Gemini APIs, tích hợp LangChain</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-python">Python</span>
+                        <span class="badge badge-openai">OpenAI</span>
+                        <span class="badge badge-gemini">Gemini</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-users"></i>
+                        <span>HR Management System</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projHR">Hệ thống quản lý nhân sự với Spring Security & Spring Cloud</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-spring">Spring Boot</span>
+                        <span class="badge badge-mysql">MySQL</span>
+                        <span class="badge badge-docker">Docker</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-book"></i>
+                        <span>Library System</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projLibrary">Ứng dụng desktop quản lý mượn & trả sách</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-java">Java</span>
+                        <span class="badge badge-sqlserver">SQL Server</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-box"></i>
+                        <span>Linkky</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projLinkky">Ứng dụng desktop quản lý sách đóng gói container</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-python">Python</span>
+                        <span class="badge badge-docker">Docker</span>
+                        <span class="badge badge-postgres">PostgreSQL</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-blog"></i>
+                        <span>NodeJS Blog</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projBlog">Nền tảng blog cá nhân xây dựng với NodeJS & Cloudinary</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-nodejs">Node.js</span>
+                        <span class="badge badge-ejs">EJS</span>
+                        <span class="badge badge-mysql">MySQL</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-hotel"></i>
+                        <span>Tour Hotel</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projHotel">Website đặt phòng khách sạn & tour sử dụng Java Servlet JSP</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-java">Java</span>
+                        <span class="badge badge-jsp">JSP</span>
+                        <span class="badge badge-mysql">MySQL</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-desktop"></i>
+                        <span>ADC Software</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projADC">Phần mềm desktop xây dựng với C# .NET</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-csharp">C#</span>
+                        <span class="badge badge-dotnet">.NET</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+                <div class="project-mobile-card">
+                    <div class="project-mobile-header">
+                        <i class="fas fa-cloud"></i>
+                        <span>GoLang Cloud & DevOps</span>
+                    </div>
+                    <p class="project-mobile-desc" data-i18n="projGoLang">Dự án Cloud & DevOps với GoLang (microservices, Docker, CI/CD)</p>
+                    <div class="tech-badges">
+                        <span class="badge badge-go">Go</span>
+                        <span class="badge badge-docker">Docker</span>
+                        <span class="badge badge-kubernetes">Kubernetes</span>
+                    </div>
+                    <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
+                </div>
+            </div>
+
+            <!-- Desktop Project Table -->
             <div class="projects-table-wrapper">
                 <table class="projects-table">
                     <thead>
                         <tr>
-                            <th data-i18n="projectName">Project</th>
-                            <th data-i18n="techStackCol">Tech Stack</th>
-                            <th data-i18n="description">Description</th>
-                            <th data-i18n="link">Link</th>
+                            <th data-i18n="projectName">Dự án</th>
+                            <th data-i18n="techStackCol">Công nghệ</th>
+                            <th data-i18n="description">Mô tả</th>
+                            <th data-i18n="link">Liên kết</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    <span>App Flutter</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-typescript">TypeScript</span>
-                                    <span class="badge badge-flutter">Flutter</span>
-                                    <span class="badge badge-sqlserver">SQL Server</span>
-                                </div>
-                            </td>
-                            <td>Expense tracker app with NestJS backend & Flutter mobile</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-mobile-alt"></i><span>App Flutter</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-typescript">TypeScript</span><span class="badge badge-flutter">Flutter</span><span class="badge badge-sqlserver">SQL Server</span></div></td>
+                            <td data-i18n="projAppFlutter">Ứng dụng theo dõi chi tiêu với NestJS backend & Flutter mobile</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-brain"></i>
-                                    <span>Learn AI</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-python">Python</span>
-                                    <span class="badge badge-openai">OpenAI</span>
-                                    <span class="badge badge-gemini">Gemini</span>
-                                    <span class="badge badge-fastapi">FastAPI</span>
-                                </div>
-                            </td>
-                            <td>AI learning project using Python with OpenAI & Gemini APIs, LangChain integration</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-brain"></i><span>Learn AI</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-python">Python</span><span class="badge badge-openai">OpenAI</span><span class="badge badge-gemini">Gemini</span><span class="badge badge-fastapi">FastAPI</span></div></td>
+                            <td data-i18n="projLearnAI">Dự án học AI sử dụng Python với OpenAI & Gemini APIs, tích hợp LangChain</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-users"></i>
-                                    <span>HR Management System</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-spring">Spring Boot</span>
-                                    <span class="badge badge-mysql">MySQL</span>
-                                    <span class="badge badge-docker">Docker</span>
-                                    <span class="badge badge-cloudinary">Cloudinary</span>
-                                </div>
-                            </td>
-                            <td>Human resource management system with Spring Security & Spring Cloud</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-users"></i><span>HR Management System</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-spring">Spring Boot</span><span class="badge badge-mysql">MySQL</span><span class="badge badge-docker">Docker</span><span class="badge badge-cloudinary">Cloudinary</span></div></td>
+                            <td data-i18n="projHR">Hệ thống quản lý nhân sự với Spring Security & Spring Cloud</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-book"></i>
-                                    <span>Library System</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-java">Java</span>
-                                    <span class="badge badge-sqlserver">SQL Server</span>
-                                </div>
-                            </td>
-                            <td>Desktop app for book borrowing & management</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-book"></i><span>Library System</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-java">Java</span><span class="badge badge-sqlserver">SQL Server</span></div></td>
+                            <td data-i18n="projLibrary">Ứng dụng desktop quản lý mượn & trả sách</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-box"></i>
-                                    <span>Linkky</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-python">Python</span>
-                                    <span class="badge badge-docker">Docker</span>
-                                    <span class="badge badge-postgres">PostgreSQL</span>
-                                </div>
-                            </td>
-                            <td>Containerized desktop app for book management</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-box"></i><span>Linkky</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-python">Python</span><span class="badge badge-docker">Docker</span><span class="badge badge-postgres">PostgreSQL</span></div></td>
+                            <td data-i18n="projLinkky">Ứng dụng desktop quản lý sách đóng gói container</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-blog"></i>
-                                    <span>NodeJS Blog</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-nodejs">Node.js</span>
-                                    <span class="badge badge-ejs">EJS</span>
-                                    <span class="badge badge-mysql">MySQL</span>
-                                </div>
-                            </td>
-                            <td>Personal blog platform built with NodeJS & Cloudinary</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-blog"></i><span>NodeJS Blog</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-nodejs">Node.js</span><span class="badge badge-ejs">EJS</span><span class="badge badge-mysql">MySQL</span></div></td>
+                            <td data-i18n="projBlog">Nền tảng blog cá nhân xây dựng với NodeJS & Cloudinary</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-hotel"></i>
-                                    <span>Tour Hotel</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-java">Java</span>
-                                    <span class="badge badge-jsp">JSP</span>
-                                    <span class="badge badge-mysql">MySQL</span>
-                                </div>
-                            </td>
-                            <td>Hotel & tour booking website using Java Servlet JSP</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-hotel"></i><span>Tour Hotel</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-java">Java</span><span class="badge badge-jsp">JSP</span><span class="badge badge-mysql">MySQL</span></div></td>
+                            <td data-i18n="projHotel">Website đặt phòng khách sạn & tour sử dụng Java Servlet JSP</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-desktop"></i>
-                                    <span>ADC Software</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-csharp">C#</span>
-                                    <span class="badge badge-dotnet">.NET</span>
-                                </div>
-                            </td>
-                            <td>Desktop software built with C# .NET</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-desktop"></i><span>ADC Software</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-csharp">C#</span><span class="badge badge-dotnet">.NET</span></div></td>
+                            <td data-i18n="projADC">Phần mềm desktop xây dựng với C# .NET</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="project-name">
-                                    <i class="fas fa-cloud"></i>
-                                    <span>GoLang Cloud & DevOps</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tech-badges">
-                                    <span class="badge badge-go">Go</span>
-                                    <span class="badge badge-docker">Docker</span>
-                                    <span class="badge badge-kubernetes">Kubernetes</span>
-                                </div>
-                            </td>
-                            <td>Cloud & DevOps project built with GoLang (microservices, Docker, CI/CD)</td>
-                            <td>
-                                <a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View">
-                                    <i class="fas fa-star"></i> View
-                                </a>
-                            </td>
+                            <td><div class="project-name"><i class="fas fa-cloud"></i><span>GoLang Cloud & DevOps</span></div></td>
+                            <td><div class="tech-badges"><span class="badge badge-go">Go</span><span class="badge badge-docker">Docker</span><span class="badge badge-kubernetes">Kubernetes</span></div></td>
+                            <td data-i18n="projGoLang">Dự án Cloud & DevOps với GoLang (microservices, Docker, CI/CD)</td>
+                            <td><a href="https://github.com/doanhquang039-code" target="_blank" class="link-icon" title="View"><i class="fas fa-star"></i> View</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1150,7 +1131,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="achievementTag">🏆 Thành tựu</span>
-                <h2 class="section-title" data-i18n="myAchievements">My Achievements</h2>
+                <h2 class="section-title" data-i18n="myAchievements">Thành Tựu Của Tôi</h2>
                 <p class="section-description" data-i18n="achievementsDesc">Chứng chỉ và những thành tựu cho thấy quá trình học tập và phát triển của tôi</p>
                 <div style="height: 2rem;"></div>
             </div>
@@ -1163,8 +1144,8 @@
                         </div>
                     </div>
                     <div class="achievement-content">
-                        <h3>Google Cloud Certified</h3>
-                        <p>Google Cloud Certified Cloud Digital Leader - Chứng nhận kiến thức về nền tảng Google Cloud</p>
+                        <h3 data-i18n="achGCloud">Google Cloud Certified</h3>
+                        <p data-i18n="achGCloudDesc">Google Cloud Certified Cloud Digital Leader - Chứng nhận kiến thức về nền tảng Google Cloud</p>
                         <div class="achievement-tags">
                             <span class="tag">Google Cloud</span>
                             <span class="tag">Cloud Computing</span>
@@ -1181,8 +1162,8 @@
                         </div>
                     </div>
                     <div class="achievement-content">
-                        <h3>Professional Achievement</h3>
-                        <p>Công nhân cho hiệu suất xuất sắc trong phát triển phần mềm và giải quyết vấn đề</p>
+                        <h3 data-i18n="achProfessional">Thành Tựu Chuyên Môn</h3>
+                        <p data-i18n="achProfessionalDesc">Được công nhận cho hiệu suất xuất sắc trong phát triển phần mềm và giải quyết vấn đề</p>
                         <div class="achievement-tags">
                             <span class="tag">Development</span>
                             <span class="tag">Excellence</span>
@@ -1198,8 +1179,8 @@
                         </div>
                     </div>
                     <div class="achievement-content">
-                        <h3>Học Bổng Toàn Phần</h3>
-                        <p>Đạt học bổng toàn phần từ trường đại học - Công nhân thành tích học tập xuất sắc</p>
+                        <h3 data-i18n="achScholarship">Học Bổng Toàn Phần</h3>
+                        <p data-i18n="achScholarshipDesc">Đạt học bổng toàn phần từ trường đại học - Công nhận thành tích học tập xuất sắc</p>
                         <div class="achievement-tags">
                             <span class="tag">Scholarship</span>
                             <span class="tag">Academic</span>
@@ -1216,8 +1197,8 @@
                         </div>
                     </div>
                     <div class="achievement-content">
-                        <h3>GameKren Prize - 16M VND</h3>
-                        <p>Giải thưởng , kết quả thi TN 2024</p>
+                        <h3 data-i18n="achGameKren">GameKren Prize - 16M VND</h3>
+                        <p data-i18n="achGameKrenDesc">Giải thưởng, kết quả thi TN 2024</p>
                         <div class="achievement-tags">
                             <span class="tag">Game Dev</span>
                             <span class="tag">Award</span>
@@ -1234,8 +1215,8 @@
                         </div>
                     </div>
                     <div class="achievement-content">
-                        <h3>Personal Milestone</h3>
-                        <p>Thành tựu đáng nhớ trong hành trình phát triển cá nhân và chuyên môn</p>
+                        <h3 data-i18n="achMilestone">Cột Mốc Cá Nhân</h3>
+                        <p data-i18n="achMilestoneDesc">Thành tựu đáng nhớ trong hành trình phát triển cá nhân và chuyên môn</p>
                         <div class="achievement-tags">
                             <span class="tag">Achievement</span>
                             <span class="tag">Growth</span>
@@ -1251,7 +1232,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="experienceTag">💼 Kinh Nghiệm</span>
-                <h2 class="section-title" data-i18n="myExperience">My Experience</h2>
+                <h2 class="section-title" data-i18n="myExperience">Kinh Nghiệm Của Tôi</h2>
                 <p class="section-description" data-i18n="experienceDesc">Quá trình làm việc và phát triển kỹ năng chuyên môn</p>
                 <div style="height: 1.5rem;"></div>
             </div>
@@ -1261,14 +1242,14 @@
                     <div class="experience-marker"></div>
                     <div class="experience-content">
                         <div class="experience-header">
-                            <h3 class="experience-title">💻 Web App Development</h3>
-                            <span class="experience-period">Ongoing</span>
+                            <h3 class="experience-title" data-i18n="expWebTitle">💻 Phát Triển Web App</h3>
+                            <span class="experience-period" data-i18n="ongoing">Đang làm</span>
                         </div>
                         <div class="company-badge">
                             <i class="fas fa-code"></i>
-                            <span>Full-Stack Development</span>
+                            <span data-i18n="expWebRole">Full-Stack Development</span>
                         </div>
-                        <p class="experience-description">
+                        <p class="experience-description" data-i18n="expWebDesc">
                             Phát triển các ứng dụng web hoàn chỉnh sử dụng Spring Boot, Node.js, React và Flutter. Thiết kế và xây dựng các hệ thống backend có khả năng mở rộng cao với API RESTful và frontend responsive.
                         </p>
                         <div class="experience-tech">
@@ -1286,14 +1267,14 @@
                     <div class="experience-marker"></div>
                     <div class="experience-content">
                         <div class="experience-header">
-                            <h3 class="experience-title">🤖 AI Agent Research</h3>
-                            <span class="experience-period">Ongoing</span>
+                            <h3 class="experience-title" data-i18n="expAITitle">🤖 Nghiên Cứu AI Agent</h3>
+                            <span class="experience-period" data-i18n="ongoing">Đang làm</span>
                         </div>
                         <div class="company-badge">
                             <i class="fas fa-robot"></i>
-                            <span>AI / Machine Learning</span>
+                            <span data-i18n="expAIRole">AI / Machine Learning</span>
                         </div>
-                        <p class="experience-description">
+                        <p class="experience-description" data-i18n="expAIDesc">
                             Nghiên cứu và phát triển các AI Agent thông minh sử dụng Python, LLM APIs (OpenAI, Gemini), LangChain, và các công nghệ AI hiện đại. Xây dựng các ứng dụng AI tích hợp để tự động hóa tác vụ phức tạp.
                         </p>
                         <div class="experience-tech">
@@ -1311,14 +1292,14 @@
                     <div class="experience-marker"></div>
                     <div class="experience-content">
                         <div class="experience-header">
-                            <h3 class="experience-title">☁️ Google Cloud Infrastructure</h3>
-                            <span class="experience-period">Ongoing</span>
+                            <h3 class="experience-title" data-i18n="expCloudTitle">☁️ Google Cloud Infrastructure</h3>
+                            <span class="experience-period" data-i18n="ongoing">Đang làm</span>
                         </div>
                         <div class="company-badge">
                             <i class="fas fa-cloud"></i>
-                            <span>Cloud & DevOps</span>
+                            <span data-i18n="expCloudRole">Cloud & DevOps</span>
                         </div>
-                        <p class="experience-description">
+                        <p class="experience-description" data-i18n="expCloudDesc">
                             Thiết kế và quản lý hạ tầng trên Google Cloud Platform (GCP). Triển khai ứng dụng sử dụng Cloud Run, Compute Engine, App Engine. Cấu hình CI/CD pipelines, monitoring, và tối ưu hóa chi phí cloud.
                         </p>
                         <div class="experience-tech">
@@ -1340,7 +1321,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="interestsTag">🎮 Sở Thích</span>
-                <h2 class="section-title" data-i18n="myInterests">My Interests</h2>
+                <h2 class="section-title" data-i18n="myInterests">Sở Thích Của Tôi</h2>
                 <p class="section-description" data-i18n="interestsDesc">Những điều tôi yêu thích ngoài lập trình</p>
                 <div style="height: 1.5rem;"></div>
             </div>
@@ -1350,7 +1331,7 @@
                     <div class="interest-icon">
                         <i class="fas fa-gamepad"></i>
                     </div>
-                    <h3 class="interest-title">🎮 Gaming</h3>
+                    <h3 class="interest-title" data-i18n="interestGaming">🎮 Chơi game</h3>
                     <div class="interest-items">
                         <span class="interest-item">
                             <i class="fas fa-trophy"></i>
@@ -1361,7 +1342,7 @@
                             Roblox
                         </span>
                     </div>
-                    <p class="interest-description">
+                    <p class="interest-description" data-i18n="interestGamingDesc">
                         Thích chơi các trò chơi chiến thuật và sáng tạo. Liên Quân giúp phát triển tư duy chiến lược, còn Roblox cho phép sáng tạo và khám phá thế giới ảo.
                     </p>
                 </div>
@@ -1370,18 +1351,18 @@
                     <div class="interest-icon">
                         <i class="fas fa-book"></i>
                     </div>
-                    <h3 class="interest-title">📚 Reading</h3>
+                    <h3 class="interest-title" data-i18n="interestReading">📚 Đọc sách</h3>
                     <div class="interest-items">
                         <span class="interest-item">
                             <i class="fas fa-brain"></i>
-                            Công nghệ & Khoa học
+                            <span data-i18n="interestReadingItem1">Công nghệ & Khoa học</span>
                         </span>
                         <span class="interest-item">
                             <i class="fas fa-lightbulb"></i>
-                            Tự phát triển
+                            <span data-i18n="interestReadingItem2">Tự phát triển</span>
                         </span>
                     </div>
-                    <p class="interest-description">
+                    <p class="interest-description" data-i18n="interestReadingDesc">
                         Đọc sách về công nghệ, AI, khoa học dữ liệu và phát triển cá nhân. Yêu thích khám phá những kiến thức mới và áp dụng vào thực tiễn.
                     </p>
                 </div>
@@ -1390,7 +1371,7 @@
                     <div class="interest-icon">
                         <i class="fas fa-music"></i>
                     </div>
-                    <h3 class="interest-title">🎵 Music</h3>
+                    <h3 class="interest-title" data-i18n="interestMusic">🎵 Âm nhạc</h3>
                     <div class="interest-items">
                         <span class="interest-item">
                             <i class="fas fa-headphones"></i>
@@ -1401,7 +1382,7 @@
                             Spotify Lover
                         </span>
                     </div>
-                    <p class="interest-description">
+                    <p class="interest-description" data-i18n="interestMusicDesc">
                         Nghe nhạc là một phần quan trọng của cuộc sống tôi. Thích các bài nhạc Indie, EDM và những ca khúc có ý nghĩa. Nhạc giúp tôi thư giãn và tăng năng suất khi làm việc.
                     </p>
                 </div>
@@ -1414,7 +1395,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="getInTouch">📬 Liên hệ</span>
-                <h2 class="section-title" data-i18n="contactTitle">Get In Touch</h2>
+                <h2 class="section-title" data-i18n="contactTitle">Liên Hệ Với Tôi</h2>
                 <p class="section-description" data-i18n="contactDesc">Hãy liên hệ với tôi cho những cơ hội hợp tác hoặc chỉ một cuộc trò chuyện thân thiện!</p>
             </div>
             <div class="contact-content">
@@ -1447,19 +1428,19 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 <span data-i18n="devPortfolioFooter">DevPortfolio</span>. <span data-i18n="madeWith">Made with</span> <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+            <p>&copy; 2026 <span data-i18n="devPortfolioFooter">DevPortfolio</span>. <span data-i18n="madeWith">Tạo ra với</span> <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
             <div class="footer-links">
-                <a href="#home" data-i18n="home">Home</a>
-                <a href="#about" data-i18n="about">About</a>
-                <a href="#tech" data-i18n="techStack">Tech</a>
-                <a href="#projects" data-i18n="achievements">Achievements</a>
-                <a href="#contact" data-i18n="contact">Contact</a>
+                <a href="#home" data-i18n="home">Trang chủ</a>
+                <a href="#about" data-i18n="about">Giới thiệu</a>
+                <a href="#tech" data-i18n="techStack">Công nghệ</a>
+                <a href="#projects" data-i18n="projects">Dự án</a>
+                <a href="#contact" data-i18n="contact">Liên hệ</a>
             </div>
         </div>
     </footer>
 
-    <script src="i18n.js?v=3.0"></script>
-    <script src="script.js?v=3.0"></script>
+    <script src="i18n.js?v=4.0"></script>
+    <script src="script.js?v=4.0"></script>
     
     <!-- Background Music -->
     <audio id="bgMusic" loop>
@@ -1468,15 +1449,12 @@
 
     <!-- AI Chatbot -->
     <div id="chatbotContainer" class="chatbot-container">
-        <!-- Chatbot Button -->
         <button id="chatbotToggle" class="chatbot-toggle" title="Chat with AI Assistant">
             <i class="fas fa-robot"></i>
             <span class="chatbot-badge">AI</span>
         </button>
 
-        <!-- Chatbot Window -->
         <div id="chatbotWindow" class="chatbot-window">
-            <!-- Header -->
             <div class="chatbot-header">
                 <div class="chatbot-header-info">
                     <div class="chatbot-avatar">
@@ -1495,7 +1473,6 @@
                 </button>
             </div>
 
-            <!-- Messages Container -->
             <div id="chatbotMessages" class="chatbot-messages">
                 <div class="message bot-message">
                     <div class="message-avatar">
@@ -1515,7 +1492,6 @@
                 </div>
             </div>
 
-            <!-- Typing Indicator -->
             <div id="typingIndicator" class="typing-indicator" style="display: none;">
                 <div class="message-avatar">
                     <i class="fas fa-robot"></i>
@@ -1527,7 +1503,6 @@
                 </div>
             </div>
 
-            <!-- Quick Actions -->
             <div class="quick-actions">
                 <button class="quick-action-btn" data-question-key="chatbotQuestion1">
                     <span data-i18n="chatbotQuick1">💼 Kinh nghiệm</span>
@@ -1540,7 +1515,6 @@
                 </button>
             </div>
 
-            <!-- Input Form -->
             <form id="chatbotForm" class="chatbot-input-form">
                 <input 
                     type="text" 
@@ -1555,7 +1529,6 @@
                 </button>
             </form>
 
-            <!-- API Key Warning (if not set) -->
             <div id="apiKeyWarning" class="api-key-warning" style="display: none;">
                 <i class="fas fa-exclamation-triangle"></i>
                 <span>Vui lòng cấu hình Gemini API Key trong chatbot.js</span>
@@ -1563,7 +1536,6 @@
         </div>
     </div>
 
-    <!-- Chatbot Script -->
     <script src="chatbot.js?v=1.0"></script>
 </body>
 </html>

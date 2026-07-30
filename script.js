@@ -164,6 +164,12 @@ function applyBgTheme(bg) {
             document.documentElement.style.setProperty(key, theme[key]);
         });
     }
+    // Toggle light-mode class for text color support
+    if (bg === 'light') {
+        document.body.classList.add('light-mode');
+    } else {
+        document.body.classList.remove('light-mode');
+    }
 }
 
 // Music toggle
@@ -176,7 +182,7 @@ musicToggle.addEventListener('change', () => {
     localStorage.setItem('portfolio_music', musicToggle.checked);
 });
 
-// Reset all settings
+// Reset all settings (preserve language preference)
 resetBtn.addEventListener('click', () => {
     brightnessInput.value = 100;
     contrastInput.value = 100;
@@ -189,10 +195,16 @@ resetBtn.addEventListener('click', () => {
     applyBgTheme('dark');
     bgBtns[0].click();
     
-    musicToggle.checked = true;
-    musicToggle.dispatchEvent(new Event('change'));
+    musicToggle.checked = false;
+    bgMusic.pause();
     
-    localStorage.clear();
+    // Clear specific settings, but keep language
+    const savedLang = localStorage.getItem('language');
+    ['portfolio_brightness', 'portfolio_contrast', 'portfolio_saturation', 
+     'portfolio_color', 'portfolio_bg', 'portfolio_music',
+     'portfolioViewCount', 'lastKnownCount'].forEach(key => localStorage.removeItem(key));
+    if (savedLang) localStorage.setItem('language', savedLang);
+    
     showNotification('✨ Settings reset to default!');
 });
 
@@ -203,7 +215,7 @@ function loadSettings() {
     const saturation = localStorage.getItem('portfolio_saturation') || 100;
     const color = localStorage.getItem('portfolio_color') || 'purple';
     const bg = localStorage.getItem('portfolio_bg') || 'dark';
-    const music = localStorage.getItem('portfolio_music') !== 'false';
+    const music = localStorage.getItem('portfolio_music') === 'true'; // Default OFF
     
     brightnessInput.value = brightness;
     contrastInput.value = contrast;
