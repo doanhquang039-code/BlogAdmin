@@ -30,6 +30,15 @@
                 <button id="githubLoginBtn" class="login-provider-btn github-btn">
                     <i class="fab fa-github"></i> GitHub
                 </button>
+                <button id="microsoftLoginBtn" class="login-provider-btn microsoft-btn">
+                    <i class="fab fa-windows"></i> Microsoft
+                </button>
+                <button id="twitterLoginBtn" class="login-provider-btn twitter-btn">
+                    <i class="fab fa-x-twitter"></i> Twitter / X
+                </button>
+                <button id="facebookLoginBtn" class="login-provider-btn facebook-btn">
+                    <i class="fab fa-facebook"></i> Facebook
+                </button>
             </div>
             <div id="userProfile" class="user-profile" style="display: none;">
                 <img id="userAvatar" src="" alt="User" class="user-avatar" title="Logged in">
@@ -155,6 +164,7 @@
                 <li><a href="#tech" class="nav-link" data-i18n="techStack">Công nghệ</a></li>
                 <li><a href="#ai-research" class="nav-link" data-i18n="aiResearch">AI Research</a></li>
                 <li><a href="#projects" class="nav-link" data-i18n="projects">Dự án</a></li>
+                <li><a href="#github-activity" class="nav-link">GitHub</a></li>
                 <li><a href="#contact" class="nav-link" data-i18n="contact">Liên hệ</a></li>
             </ul>
             <div class="hamburger">
@@ -175,8 +185,8 @@
                     <h1 class="hero-title">
                         <span class="gradient-text typing-text">Đặng Quang Doanh</span>
                     </h1>
-                    <h2 class="hero-subtitle" data-i18n="heroSubtitle">
-                        <span class="role-animator"></span>
+                    <h2 class="hero-subtitle">
+                        <span class="role-animator"></span><span class="cursor">|</span>
                     </h2>
                     <p class="hero-description" data-i18n="heroDescription">
                         🚀 Đam mê xây dựng những giải pháp sáng tạo | 💻 Spring Boot • Node.js • Flutter • Python AI
@@ -1459,6 +1469,142 @@
         </div>
     </section>
 
+    <!-- Guestbook Section -->
+    <section id="guestbook" class="section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" data-i18n="guestbookTag">📝 Guestbook</span>
+                <h2 class="section-title" data-i18n="guestbookTitle">Sổ Lưu Bút</h2>
+                <p class="section-subtitle" data-i18n="guestbookDesc">Để lại dấu ấn của bạn tại đây!</p>
+            </div>
+
+            <div class="guestbook-container">
+                <!-- Guestbook Form -->
+                <div class="guestbook-form-container">
+                    <div id="guestbookAuthWarning" class="auth-warning">
+                        <i class="fas fa-lock"></i>
+                        <p data-i18n="guestbookLoginPrompt">Vui lòng đăng nhập để viết vào sổ lưu bút.</p>
+                        <button onclick="document.getElementById('loginBtn').click()" class="btn primary-btn" data-i18n="login">Đăng nhập</button>
+                    </div>
+                    
+                    <form id="guestbookForm" class="guestbook-form" style="display: none;">
+                        <div class="guestbook-user-info">
+                            <img id="guestbookAvatar" src="" alt="Avatar">
+                            <span id="guestbookName"></span>
+                        </div>
+                        <textarea id="guestbookMessage" placeholder="Viết gì đó thật ngầu nhé..." required></textarea>
+                        <button type="submit" class="btn primary-btn">
+                            <i class="fas fa-paper-plane"></i> <span data-i18n="guestbookSubmit">Gửi lời nhắn</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Messages List -->
+                <div class="guestbook-messages">
+                    <h3 data-i18n="guestbookRecent">Lời nhắn gần đây</h3>
+                    <div id="messagesList" class="messages-list">
+                        <div class="loading-messages">
+                            <i class="fas fa-spinner fa-spin"></i> Loading...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Activity Section -->
+    <section id="github-activity" class="section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">⚡ Open Source</span>
+                <h2 class="section-title" data-i18n="githubTitle">Hoạt Động GitHub</h2>
+                <p class="section-subtitle" data-i18n="githubDesc">Hành trình code mỗi ngày được ghi lại đầy đủ</p>
+            </div>
+
+            <div class="github-stats-grid">
+                <div class="github-stat-card">
+                    <i class="fas fa-fire"></i>
+                    <span class="stat-number" id="gh-repos">...</span>
+                    <span class="stat-label" data-i18n="githubRepos">Public Repos</span>
+                </div>
+                <div class="github-stat-card">
+                    <i class="fas fa-users"></i>
+                    <span class="stat-number" id="gh-followers">...</span>
+                    <span class="stat-label" data-i18n="githubFollowers">Followers</span>
+                </div>
+                <div class="github-stat-card">
+                    <i class="fas fa-star"></i>
+                    <span class="stat-number" id="gh-stars">...</span>
+                    <span class="stat-label" data-i18n="githubStars">Total Stars</span>
+                </div>
+                <div class="github-stat-card">
+                    <i class="fas fa-code-branch"></i>
+                    <span class="stat-number" id="gh-commits">365+</span>
+                    <span class="stat-label" data-i18n="githubCommits">Contributions</span>
+                </div>
+            </div>
+
+            <!-- GitHub Contribution Calendar -->
+            <div class="github-calendar-wrapper">
+                <h3 class="calendar-title"><i class="fab fa-github"></i> Contribution Graph</h3>
+                <div id="github-calendar-container">
+                    <!-- Rendered by github-calendar -->
+                </div>
+            </div>
+
+            <!-- GitHub Language Stats via github-readme-stats -->
+            <div class="github-lang-section">
+                <img 
+                    src="https://github-readme-stats.vercel.app/api/top-langs/?username=doanhquang039-code&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=a0aec0"
+                    alt="Top Languages"
+                    class="github-lang-img"
+                    onerror="this.style.display='none'">
+                <img 
+                    src="https://github-readme-stats.vercel.app/api?username=doanhquang039-code&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=a0aec0&icon_color=8b5cf6"
+                    alt="GitHub Stats"
+                    class="github-lang-img"
+                    onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Terminal Modal -->
+    <div id="terminalOverlay" class="terminal-overlay">
+        <div id="terminalWindow" class="terminal-window">
+            <div class="terminal-titlebar">
+                <div class="terminal-dots">
+                    <span class="dot red" id="terminalClose" title="Close (ESC)"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="terminal-title">quangdoanh@portfolio:~$</span>
+                <span class="terminal-hint">Press ESC to close</span>
+            </div>
+            <div id="terminalBody" class="terminal-body">
+                <div class="terminal-welcome">
+                    <pre class="terminal-ascii">  ___  ___  ___  ___  ___  _ _  ___  ___  ___  ___  _  _  _  _ 
+ |   \|   ||   ||  ||  _ \| | ||   ||  ||   ||  _ \| || || || |
+ | |\   |-||    | | ||   || O ||    | | ||    ||   || \/ || \| |
+ |___/|___||___|___/ |_\_\|___||___|___/ |___|  |_\_\|__/ |_|\|
+</pre>
+                    <p class="term-intro">Welcome to the Interactive Portfolio Terminal v2.0</p>
+                    <p class="term-intro">Type <span class="cmd-highlight">help</span> to see all available commands.</p>
+                    <br>
+                </div>
+                <div id="terminalOutput"></div>
+                <div class="terminal-input-line">
+                    <span class="terminal-prompt">quangdoanh@portfolio <span class="prompt-path">~</span> $&nbsp;</span>
+                    <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terminal Toggle Button -->
+    <button id="terminalToggleBtn" class="terminal-toggle-btn" title="Open Terminal (Ctrl+`)">
+        <i class="fas fa-terminal"></i>
+    </button>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1573,5 +1719,12 @@
     <!-- Auth & Database Logic -->
     <script src="auth.js"></script>
     <script src="chatbot.js?v=1.0"></script>
+
+    <!-- GitHub Calendar Library -->
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"/>
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+
+    <!-- Terminal & GitHub Stats -->
+    <script src="terminal.js?v=1.0"></script>
 </body>
 </html>

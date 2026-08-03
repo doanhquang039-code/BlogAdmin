@@ -15,7 +15,7 @@ const translations = {
 
         // Hero Section
         hello: '👋 Xin chào, tôi là',
-        heroSubtitle: 'Sinh viên CNTT năm 2 | Full-Stack Developer',
+        heroRoles: ['Web Developer', 'Mobile App Developer', 'AI Researcher', 'Freelancer'],
         heroDescription: '🚀 Đam mê xây dựng những giải pháp sáng tạo | 💻 Spring Boot • Node.js • Flutter • Python AI',
         passionate: 'Đam mê',
         buildingInnovative: 'xây dựng những giải pháp sáng tạo',
@@ -268,7 +268,7 @@ const translations = {
 
         // Hero Section
         hello: '👋 Hello, I am',
-        heroSubtitle: 'Year 2 CS Student | Full-Stack Developer',
+        heroRoles: ['Web Developer', 'Mobile App Developer', 'AI Researcher', 'Freelancer'],
         heroDescription: '🚀 Passionate about building innovative solutions | 💻 Spring Boot • Node.js • Flutter • Python AI',
         passionate: 'Passionate',
         buildingInnovative: 'building innovative solutions',
@@ -410,6 +410,14 @@ const translations = {
         aiLearnCurrent: '2026 (Current)',
         aiLearnPlanned: '2026 Q4 (Planned)',
 
+        // Guestbook
+        guestbookTag: '✍️ Guestbook',
+        guestbookTitle: 'Guestbook',
+        guestbookDesc: 'Leave me a message!',
+        guestbookName: 'Your Name',
+        guestbookMessage: 'Your Message',
+        guestbookSubmit: 'Send Message',
+
         // Projects Section
         projectsTag: '🚀 Projects',
         myProjects: 'My Projects',
@@ -521,7 +529,7 @@ const translations = {
 
         // Hero Section
         hello: '👋 你好，我是',
-        heroSubtitle: '计算机科学二年级学生 | 全栈开发者',
+        heroRoles: ['Web 开发者', '移动应用开发者', 'AI 研究员', '自由职业者'],
         heroDescription: '🚀 热衷于构建创新解决方案 | 💻 Spring Boot • Node.js • Flutter • Python AI',
         passionate: '热衷',
         buildingInnovative: '构建创新解决方案',

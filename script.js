@@ -785,7 +785,7 @@ scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
 scrollToTopBtn.className = 'scroll-to-top';
 scrollToTopBtn.style.cssText = `
     position: fixed;
-    bottom: 2rem;
+    bottom: 7rem;
     right: 2rem;
     width: 50px;
     height: 50px;
@@ -843,12 +843,178 @@ function animateSkills() {
     });
 }
 
-// Initialize skills animation when page loads
-window.addEventListener('load', () => {
-    animateSkills();
+// ===== Terminal Typing Effect =====
+class TypeWriter {
+    constructor(txtElement, words, wait = 3000) {
+        this.txtElement = txtElement;
+        this.words = words;
+        this.txt = '';
+        this.wordIndex = 0;
+        this.wait = parseInt(wait, 10);
+        this.type();
+        this.isDeleting = false;
+    }
+
+    type() {
+        if (!this.words || this.words.length === 0) return;
+        const current = this.wordIndex % this.words.length;
+        const fullTxt = this.words[current];
+
+        if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+        let typeSpeed = 100;
+        if (this.isDeleting) typeSpeed /= 2;
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+            typeSpeed = this.wait;
+            this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.wordIndex++;
+            typeSpeed = 500;
+        }
+
+        this.timeoutId = setTimeout(() => this.type(), typeSpeed);
+    }
+    
+    updateWords(newWords) {
+        this.words = newWords;
+    }
+}
+
+let typewriterInstance = null;
+
+function initTypingEffect() {
+    const txtElement = document.querySelector('.role-animator');
+    if (!txtElement) return;
+    
+    const lang = (typeof getCurrentLanguage === 'function') ? getCurrentLanguage() : 'vi';
+    let words = ['Web Developer', 'Mobile App Developer', 'AI Researcher'];
+    
+    if (typeof getTranslations === 'function') {
+        const trans = getTranslations();
+        if (trans[lang] && trans[lang].heroRoles) {
+            words = trans[lang].heroRoles;
+        }
+    }
+    
+    if (typewriterInstance) {
+        typewriterInstance.updateWords(words);
+    } else {
+        typewriterInstance = new TypeWriter(txtElement, words, 2500);
+    }
+}
+
+// Restart typing effect when language changes
+document.addEventListener('languageChanged', () => {
+    initTypingEffect();
 });
 
-console.log('🚀 Enhanced Portfolio Loaded!');
+// ===== Guestbook Logic =====
+function initGuestbook() {
+    const guestbookForm = document.getElementById('guestbookForm');
+    const guestbookAuthWarning = document.getElementById('guestbookAuthWarning');
+    const guestbookAvatar = document.getElementById('guestbookAvatar');
+    const guestbookName = document.getElementById('guestbookName');
+    const guestbookMessage = document.getElementById('guestbookMessage');
+    const messagesList = document.getElementById('messagesList');
+    
+    // Check Auth State
+    if (typeof firebase !== 'undefined') {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                guestbookAuthWarning.style.display = 'none';
+                guestbookForm.style.display = 'flex';
+                guestbookAvatar.src = user.photoURL || 'https://via.placeholder.com/40';
+                guestbookName.textContent = user.displayName || 'Anonymous Developer';
+            } else {
+                guestbookAuthWarning.style.display = 'flex';
+                guestbookForm.style.display = 'none';
+            }
+        });
+        
+        // Listen to Database
+        const db = firebase.database();
+        db.ref('guestbook').orderByChild('timestamp').limitToLast(20).on('value', (snapshot) => {
+            messagesList.innerHTML = '';
+            if (!snapshot.exists()) {
+                messagesList.innerHTML = '<p style="text-align:center; color: var(--text-secondary);"><i class="fas fa-comment-slash"></i> Chưa có lời nhắn nào. Hãy là người đầu tiên!</p>';
+                return;
+            }
+            
+            const messages = [];
+            snapshot.forEach((child) => {
+                messages.push(child.val());
+            });
+            
+            // Reverse so newest is at the top
+            messages.reverse().forEach((msg) => {
+                const date = new Date(msg.timestamp).toLocaleString('vi-VN');
+                const html = `
+                    <div class="guestbook-msg">
+                        <img src="${msg.photoURL || 'https://via.placeholder.com/40'}" class="msg-avatar" alt="User">
+                        <div class="msg-content">
+                            <div class="msg-header">
+                                <span class="msg-author">${msg.displayName}</span>
+                                <span class="msg-time">${date}</span>
+                            </div>
+                            <p class="msg-text">${msg.text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+                        </div>
+                    </div>
+                `;
+                messagesList.innerHTML += html;
+            });
+        });
+        
+        // Submit Message
+        if (guestbookForm) {
+            guestbookForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const user = firebase.auth().currentUser;
+                const text = guestbookMessage.value.trim();
+                
+                if (user && text) {
+                    const btn = guestbookForm.querySelector('button');
+                    const origHtml = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+                    btn.disabled = true;
+                    
+                    db.ref('guestbook').push({
+                        uid: user.uid,
+                        displayName: user.displayName || 'Anonymous',
+                        photoURL: user.photoURL || '',
+                        text: text,
+                        timestamp: firebase.database.ServerValue.TIMESTAMP
+                    }).then(() => {
+                        guestbookMessage.value = '';
+                        btn.innerHTML = origHtml;
+                        btn.disabled = false;
+                        showNotification('Gửi lời nhắn thành công!');
+                    }).catch((error) => {
+                        btn.innerHTML = origHtml;
+                        btn.disabled = false;
+                        alert('Lỗi: ' + error.message);
+                    });
+                }
+            });
+        }
+    }
+}
+
+// Initialize when page loads
+window.addEventListener('load', () => {
+    animateSkills();
+    initTypingEffect();
+    initGuestbook();
+});
+
+console.log('🚀 Enhanced Portfolio Loaded with Typing & Guestbook!');
 console.log('💡 Keyboard Shortcuts:');
 console.log('   Ctrl + P = Print Portfolio');
 console.log('   Ctrl + K = Open Settings');

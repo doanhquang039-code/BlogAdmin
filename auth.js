@@ -20,13 +20,21 @@ let auth;
 let database;
 let googleProvider;
 let githubProvider;
+let microsoftProvider;
+let twitterProvider;
+let facebookProvider;
 
 if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
     firebase.initializeApp(firebaseConfig);
     auth = firebase.auth();
     database = firebase.database();
+    
+    // Providers
     googleProvider = new firebase.auth.GoogleAuthProvider();
     githubProvider = new firebase.auth.GithubAuthProvider();
+    microsoftProvider = new firebase.auth.OAuthProvider('microsoft.com');
+    twitterProvider = new firebase.auth.TwitterAuthProvider();
+    facebookProvider = new firebase.auth.FacebookAuthProvider();
 } else {
     console.warn("⚠️ Firebase chưa được cấu hình. Vui lòng cập nhật firebaseConfig trong auth.js!");
 }
@@ -43,6 +51,9 @@ const gatedButtons = document.querySelectorAll('.auth-gated-btn');
 const loginDropdown = document.getElementById('loginDropdown');
 const googleLoginBtn = document.getElementById('googleLoginBtn');
 const githubLoginBtn = document.getElementById('githubLoginBtn');
+const microsoftLoginBtn = document.getElementById('microsoftLoginBtn');
+const twitterLoginBtn = document.getElementById('twitterLoginBtn');
+const facebookLoginBtn = document.getElementById('facebookLoginBtn');
 
 // Global User State
 window.currentUser = null;
@@ -85,6 +96,18 @@ if (googleLoginBtn) {
 
 if (githubLoginBtn) {
     githubLoginBtn.addEventListener('click', () => handleAuthPopup(githubProvider));
+}
+
+if (microsoftLoginBtn) {
+    microsoftLoginBtn.addEventListener('click', () => handleAuthPopup(microsoftProvider));
+}
+
+if (twitterLoginBtn) {
+    twitterLoginBtn.addEventListener('click', () => handleAuthPopup(twitterProvider));
+}
+
+if (facebookLoginBtn) {
+    facebookLoginBtn.addEventListener('click', () => handleAuthPopup(facebookProvider));
 }
 
 if (logoutBtn) {
