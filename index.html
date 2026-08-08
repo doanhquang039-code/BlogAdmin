@@ -3,20 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Đặng Quang Doanh - Portfolio</title>
-    <meta name="description" content="Portfolio cá nhân của Đặng Quang Doanh - Full-Stack Developer, AI Enthusiast">
+
+    <!-- ===== SEO Core ===== -->
+    <title>Đặng Quang Doanh - Full-Stack Developer & AI Enthusiast</title>
+    <meta name="description" content="Portfolio cá nhân của Đặng Quang Doanh - Full-Stack Developer, AI Enthusiast. Sinh viên CNTT năm 2, chuyên Spring Boot, Node.js, Flutter, Python AI.">
+    <meta name="keywords" content="Đặng Quang Doanh, Portfolio, Full-Stack Developer, AI, Spring Boot, Node.js, Flutter, Vietnam Developer">
+    <meta name="author" content="Đặng Quang Doanh">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://doanhquang039-code.github.io/">
+
+    <!-- ===== Open Graph (Facebook, LinkedIn) ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://doanhquang039-code.github.io/">
+    <meta property="og:title" content="Đặng Quang Doanh - Full-Stack Developer & AI Enthusiast">
+    <meta property="og:description" content="Portfolio cá nhân của Đặng Quang Doanh. Sinh viên CNTT năm 2 với đam mê xây dựng các giải pháp sáng tạo bằng Spring Boot, Node.js, Flutter & Python AI.">
+    <meta property="og:image" content="https://doanhquang039-code.github.io/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:site_name" content="DevPortfolio - Đặng Quang Doanh">
+
+    <!-- ===== Twitter Card ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Đặng Quang Doanh - Full-Stack Developer">
+    <meta name="twitter:description" content="Portfolio cá nhân - Spring Boot, Node.js, Flutter, Python AI. Google Cloud Certified.">
+    <meta name="twitter:image" content="https://doanhquang039-code.github.io/og-image.jpg">
+
+    <!-- ===== PWA ===== -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DevPortfolio">
+
+    <!-- ===== JSON-LD Structured Data ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Đặng Quang Doanh",
+      "jobTitle": "Full-Stack Developer & AI Enthusiast",
+      "url": "https://doanhquang039-code.github.io/",
+      "email": "doanhquang040@gmail.com",
+      "address": { "@type": "PostalAddress", "addressCountry": "VN", "addressLocality": "Hà Nội" },
+      "sameAs": [
+        "https://github.com/doanhquang039-code",
+        "https://www.linkedin.com/in/doanh-quang-0a4561407/"
+      ],
+      "knowsAbout": ["Spring Boot","Node.js","Flutter","Python","AI","Machine Learning","React","Docker","GCP"]
+    }
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="enhancements.css">
     <link rel="stylesheet" href="chatbot.css">
-    
+
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+    <!-- Leaflet.js (Visitor Map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- html2pdf (CV Export) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Chart.js (Radar Chart) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
+    <!-- ===== Scroll Progress Bar ===== -->
+    <div id="scrollProgress" class="scroll-progress-bar"></div>
+
+    <!-- ===== PWA Install Banner ===== -->
+    <div id="pwaInstallBanner" class="pwa-banner">
+        <div class="pwa-banner-content">
+            <i class="fas fa-mobile-alt"></i>
+            <div>
+                <strong>Cài đặt Portfolio App</strong>
+                <p>Thêm vào màn hình chính của bạn để truy cập nhanh!</p>
+            </div>
+        </div>
+        <div class="pwa-banner-actions">
+            <button id="pwaInstallBtn" class="pwa-install-btn"><i class="fas fa-download"></i> Cài</button>
+            <button id="pwaDismissBtn" class="pwa-dismiss-btn"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
     <!-- View Counter, Login & Settings -->
     <div class="top-controls">
         <div id="authContainer" class="auth-container">
@@ -177,6 +257,8 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <!-- tsParticles canvas -->
+        <div id="tsparticles" class="particles-canvas"></div>
         <div class="hero-particles"></div>
         <div class="container">
             <div class="hero-content">
@@ -253,6 +335,9 @@
                         <a href="#contact" class="btn btn-secondary">
                             <i class="fas fa-envelope"></i> <span data-i18n="contactMe">Liên hệ</span>
                         </a>
+                        <button id="downloadCvBtn" class="btn btn-cv">
+                            <i class="fas fa-file-pdf"></i> <span>Tải CV (PDF)</span>
+                        </button>
                     </div>
                     <div class="social-links">
                         <a href="https://github.com/doanhquang039-code" target="_blank" class="social-icon" title="GitHub">
@@ -977,11 +1062,21 @@
                 <h2 class="section-title" data-i18n="myProjects">Dự Án Của Tôi</h2>
                 <p class="section-description" data-i18n="projectsDesc">Các dự án và công việc mà tôi đã thực hiện</p>
                 <div style="height: 2rem;"></div>
+
+                <!-- Project Filter Buttons -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">🌐 Tất cả</button>
+                    <button class="filter-btn" data-filter="ai">🤖 AI / ML</button>
+                    <button class="filter-btn" data-filter="backend">⚙️ Backend</button>
+                    <button class="filter-btn" data-filter="frontend">🎨 Frontend</button>
+                    <button class="filter-btn" data-filter="mobile">📱 Mobile</button>
+                    <button class="filter-btn" data-filter="devops">☁️ DevOps</button>
+                </div>
             </div>
-            
+
             <!-- Mobile Project Cards -->
             <div class="projects-mobile-cards">
-                <div class="project-mobile-card">
+                <div class="project-mobile-card" data-tags="mobile frontend backend">
                     <div class="project-mobile-header">
                         <i class="fas fa-mobile-alt"></i>
                         <span>App Flutter</span>
@@ -994,7 +1089,7 @@
                     </div>
                     <a href="https://github.com/doanhquang039-code" target="_blank" class="project-mobile-link"><i class="fas fa-star"></i> View</a>
                 </div>
-                <div class="project-mobile-card">
+                <div class="project-mobile-card" data-tags="ai backend">
                     <div class="project-mobile-header">
                         <i class="fas fa-brain"></i>
                         <span>Learn AI</span>
@@ -1512,6 +1607,73 @@
         </div>
     </section>
 
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">✍️ Blog</span>
+                <h2 class="section-title">Bài Viết Của Tôi</h2>
+                <p class="section-subtitle">Chia sẻ kiến thức, kinh nghiệm và hành trình học tập của tôi</p>
+            </div>
+
+            <!-- Admin Panel (only visible to owner) -->
+            <div id="blogAdminPanel" class="blog-admin-panel" style="display:none;">
+                <h3><i class="fas fa-edit"></i> Viết bài mới</h3>
+                <form id="blogPostForm" class="blog-write-form">
+                    <div class="blog-form-row">
+                        <input type="text" id="blogEmoji" placeholder="Emoji (VD: 💡)" maxlength="4" class="blog-input-sm">
+                        <input type="text" id="blogTag" placeholder="Tag (VD: Spring Boot)" class="blog-input-sm">
+                    </div>
+                    <input type="text" id="blogTitle" placeholder="Tiêu đề bài viết..." required class="blog-input-full">
+                    <textarea id="blogContent" placeholder="Nội dung bài viết..." required class="blog-textarea"></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Đăng bài
+                    </button>
+                </form>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div id="blogPostsList" class="blog-grid">
+                <div class="blog-empty">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Đang tải bài viết...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visitor World Map Section -->
+    <section id="visitor-map" class="section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">🌍 Realtime</span>
+                <h2 class="section-title">Bản Đồ Người Xem</h2>
+                <p class="section-subtitle">Những người khách đã ghé thăm trang web của tôi từ khắp nơi trên thế giới</p>
+            </div>
+
+            <div class="map-stats-row">
+                <div class="map-stat-badge">
+                    <i class="fas fa-users"></i>
+                    <span id="visitorMapCount">0</span>
+                    <span>Lượt ghé thăm</span>
+                </div>
+                <div class="map-stat-badge">
+                    <i class="fas fa-globe-asia"></i>
+                    <span id="visitorCountryCount">0</span>
+                    <span>Quốc gia</span>
+                </div>
+                <div class="map-stat-badge live">
+                    <span class="live-dot"></span>
+                    <span>LIVE</span>
+                </div>
+            </div>
+
+            <div class="map-wrapper">
+                <div id="visitorMapEl" class="visitor-map"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- GitHub Activity Section -->
     <section id="github-activity" class="section">
         <div class="container">
@@ -1726,5 +1888,20 @@
 
     <!-- Terminal & GitHub Stats -->
     <script src="terminal.js?v=1.0"></script>
+
+    <!-- Particles Hero -->
+    <script src="particles-config.js?v=1.0"></script>
+
+    <!-- PDF CV Export -->
+    <script src="pdf-export.js?v=1.0"></script>
+
+    <!-- Visitor World Map -->
+    <script src="visitor-map.js?v=1.0"></script>
+
+    <!-- Portfolio Improvements (Scroll Progress, Filter, Radar, Mobile Nav, Lazy Load, PWA) -->
+    <script src="improvements.js?v=1.0"></script>
+
+    <!-- Blog Section -->
+    <script src="blog.js?v=1.0"></script>
 </body>
 </html>
